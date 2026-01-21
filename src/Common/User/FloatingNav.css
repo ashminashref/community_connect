@@ -1,0 +1,50 @@
+/* Floating Navigation Bar */
+.floating-nav {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--nav-box-bg) ;
+  backdrop-filter: blur(8px);
+  padding: 10px 25px;
+  border-radius: 50px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  border: 1px solid var(--card-border);
+}
+
+.nav-item {
+  padding: 8px 38px;
+  border-radius: 33px;
+  font-size: 0.85rem;
+  color:var(--nav-icon);
+}
+.nav-item:hover{
+  cursor: pointer;
+  background-color: var(--nav-icon-active);
+}
+.nav-item.active {
+  background: var(--nav-icon-active);
+  color:var(--nav-icon-txt);
+  font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-item {
+    display: block;      
+    width: 100%;         
+    padding: 10px 0;    
+    text-align: center; 
+    background:none !important; 
+  
+  }
+  .floating-nav{
+    padding: 2px 50px;
+    gap: 40px;
+    
+  }
+  .lucide-icon{
+    font-size: 1px !important;
+  }
+}
