@@ -1,5 +1,5 @@
 import React from 'react'
-import './Floatingnav.css'
+import './FloatingNav.css'
 import {House, User, Bell} from 'lucide-react'
 function Floatingnav() {
   return (
