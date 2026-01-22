@@ -35,13 +35,14 @@ function BentoGrid() {
         </Col>
 
         <Col xs={12} className='mb-5 pb-5'>
+
           <Card
             title="Community"
             icon={<Users size={20} />}
             subtitle="Events & prayer times"
             highlight={true}
             items={[
-              { name: "Daily Duas", sub: "Supplications", showArrow: true },
+              { name: "Daily Duas", sub: "Supplications", showArrow: true, onClick:()=>navigate('/duas') },
               { name: "Friday Congregation", sub: "Tomorrow, 1:00 PM", icon: <Clock size={14}/> }
             ]}
             footer="Next: Maghrib 6:18 PM"

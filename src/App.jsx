@@ -7,6 +7,7 @@ import Notifications from './Pages/User/Notifications'
 import Profile from './Pages/User/Profile'
 import PaymentPage from './Components/Payment'
 import Certificate from './Components/Certificate'
+import UserDua from './Pages/User/UserDua'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='profile/' element={<Profile/>}/>
           <Route path='payment/' element={<PaymentPage/>}/>
           <Route path='certificate/' element={<Certificate/>}/>
+          <Route path = 'duas' element = {<UserDua/>}/>
 
         </Routes>
           </div>

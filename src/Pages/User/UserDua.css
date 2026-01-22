@@ -1,0 +1,35 @@
+.header-h1, .dua-h5{
+    font-family: 'PlayFair Display';
+    color: var(--text-primary-color);
+}
+.header-p,.dua-small, .dua-trans{
+    font-family: 'DM Sans';
+    color: var(--text-secondary-color);
+}
+.search-bar{
+    background-color: var(--card-bg-secondary) !important;
+    color: var(--text-secondary-color) !important;
+}
+.search-icon{
+    color: var(--icon-bg);
+}
+.cat-btn{
+    color: var(--text-secondary-color) !important;
+    background-color: var(--card-bg-secondary) !important;
+}
+.cat-btn:active{
+    background-color: var(--text-primary-color) !important;
+}
+.dua-card{
+    background-color: var(--card-bg-secondary);
+    border: 1px solid var(--card-border) ;
+}
+.dua-icon{
+    color: var(--icon-color);
+    background-color: var(--icon-bg);
+    
+}
+.arabic-text{
+    font-family: 'Noto Sans Arabic' !important;
+    color: var(--text-primary-color);
+}
