@@ -2,7 +2,7 @@
     font-family: 'PlayFair Display';
     color: var(--text-primary-color);
 }
-.header-p,.dua-small, .dua-trans{
+.header-p,.dua-small{
     font-family: 'DM Sans';
     color: var(--text-secondary-color);
 }
@@ -11,14 +11,20 @@
     color: var(--text-secondary-color) !important;
 }
 .search-icon{
-    color: var(--icon-bg);
+    color: var(--text-primary-color);
+}
+.search-bar:focus{
+    outline: 1px solid var(--card-bg-primary) !important;
 }
 .cat-btn{
-    color: var(--text-secondary-color) !important;
+    color: var(--text-primary-color) !important;
     background-color: var(--card-bg-secondary) !important;
 }
-.cat-btn:active{
-    background-color: var(--text-primary-color) !important;
+.cat-btn.active{
+    background-color: var(--nav-icon-txt) !important;
+    color: var(--icon-active-txt) !important;
+    border: none;
+
 }
 .dua-card{
     background-color: var(--card-bg-secondary);
@@ -30,6 +36,20 @@
     
 }
 .arabic-text{
-    font-family: 'Noto Sans Arabic' !important;
+    font-family: 'Amiri' !important;
     color: var(--text-primary-color);
+    font-size: 1.8rem;
+    line-height: 60px;
+}
+.trans-p, .trans-p-ml{
+    color: var(--text-secondary-color);
+}
+.dua-trans{
+    color: var(--text-primary-color);
+    font-family: 'DM Sans';
+}
+@media (max-width:768px){
+    .arabic-text{
+        font-size: 1.5rem;
+    }
 }

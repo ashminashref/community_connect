@@ -23,7 +23,7 @@ const UserDua = () => {
   }, [searchTerm, activeCategory]);
 
   return (
-    <div className="min-vh-100 mb-5 pb-5">
+    <div className=" mb-5 pb-5">
         <Topbar/>
       <div className="container mt-5  pt-5" >
 
@@ -39,8 +39,8 @@ const UserDua = () => {
           </button>
 
           <div className="certificate-header-text">
-            <h1>Request Certificate</h1>
-            <p>Submit your application</p>
+            <h1>Daily Duas</h1>
+            <p>Supplications for every occassion</p>
           </div>
         </header>
 
@@ -62,14 +62,14 @@ const UserDua = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className="btn cat-btn btn-sm rounded-pill px-3 ">
+              className={`btn cat-btn btn-sm rounded-pill px-3 ${activeCategory === cat? 'active': ''}`}>
               {cat}
             </button>
           ))}
         </div>
 
         {/* Duas List */}
-        <div className="d-flex flex-column gap-4">
+        <div className="d-flex flex-column gap-4 ">
           {filteredDuas.map((dua) => (
             <div key={dua.id} className="dua-card rounded-4 p-4" >
               <div className="d-flex justify-content-between align-items-start mb-3">
@@ -93,9 +93,9 @@ const UserDua = () => {
 
               <div className="mt-2">
                 <p className=" fst-italic mb-1 dua-trans">{dua.transliteration}</p>
-                <p className="mb-2" style={{ fontSize: '0.95rem', color: '#cbd5e0' }}>{dua.translation_en}</p>
+                <p className="mb-2 trans-p" style={{ fontSize: '0.95rem' }}>{dua.translation_en}</p>
                 <hr style={{ borderColor: '#ffffff1a' }} />
-                <p className="mb-0" style={{ fontSize: '0.95rem', color: '#a0aec0', fontFamily: 'Manjari, sans-serif' }}>
+                <p className="mb-0 trans-p-ml" style={{ fontSize: '0.95rem',  fontFamily: 'Manjari, sans-serif' }}>
                    {dua.translation_ml}
                 </p>
               </div>

@@ -4,7 +4,7 @@ import './SubmitButton.css';
 
 const SubmitButton = () => {
   return (
-    <div className="d-flex justify-content-center mb-5 pb-5">
+    <div className="d-flex justify-content-center mb-5 pb-4">
       <Button className="submit-btn d-flex align-items-center gap-2 border-0 p-4">
         <span className="btn-text">Submit</span>
         <div className="icon-container">

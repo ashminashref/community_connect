@@ -23,7 +23,7 @@ export const duas = [
   {
     "id": 3,
     "title": "For Parents",
-    "arabic": "رَّبِّ ارْحَمْهُمَا കമാ رَبَّيَانِي صَغِيرًا",
+"arabic": "رَّبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا",
     "transliteration": "Rabbi irhamhuma kama rabbayani sagheera",
     "translation_en": "My Lord, have mercy upon them as they brought me up [when I was] small.",
     "translation_ml": "എന്റെ രക്ഷിതാവേ! അവർ ഇരുവരും ചെറുപ്പത്തിൽ എന്നെ വളർത്തിയത് പോലെ നീ അവരോട് കരുണ കാണിക്കേണമേ.",

@@ -20,11 +20,10 @@ function App() {
         <Routes>
           <Route path='' element = {<Home/>}/>
           <Route path = 'notification/' element = {<Notifications/>}/>
-          <Route path='profile/' element={<Profile/>}/>
+          <Route path='userprofile/' element={<Profile/>}/>
           <Route path='payment/' element={<PaymentPage/>}/>
           <Route path='certificate/' element={<Certificate/>}/>
           <Route path = 'duas' element = {<UserDua/>}/>
-
         </Routes>
           </div>
       </ThemeProvider>

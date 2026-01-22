@@ -20,7 +20,7 @@ function Floatingnav() {
         </div>
         </Link>
         
-        <Link to = 'profile'>
+        <Link to = 'userprofile'>
         <div className="nav-item d-flex flex-column align-items-center justify-content-center">
           <User className="lucide-icon" />
           Profile
