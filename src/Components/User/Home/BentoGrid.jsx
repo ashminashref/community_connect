@@ -7,7 +7,6 @@ function BentoGrid() {
   return (
     <Container fluid className="px-0 py-4">
       <Row className="g-4"> 
-        {/* Row 1: Two cards side-by-side on desktop, stacked on mobile */}
         <Col xs={12} md={6}>
           <Card
             title="Payments"
@@ -26,14 +25,13 @@ function BentoGrid() {
             icon={<FileText size={20} />}
             subtitle="Request & download"
             items={[
-              { name: "Birth" }, 
-              { name: "Marriage" }, 
-              { name: "Death" }
+              { name: "Birth",showArrow: true }, 
+              { name: "Marriage",showArrow: true }, 
+              { name: "Death",showArrow: true }
             ]}
           />
         </Col>
 
-        {/* Row 2: One card spanning the full width */}
         <Col xs={12} className='mb-5 pb-5'>
           <Card
             title="Community"

@@ -18,7 +18,7 @@
   padding: 8px 38px;
   border-radius: 33px;
   font-size: 0.85rem;
-  color:var(--nav-icon);
+  color:var(--nav-icon-txt);
 }
 .nav-item:hover{
   cursor: pointer;
@@ -26,7 +26,7 @@
 }
 .nav-item.active {
   background: var(--nav-icon-active);
-  color:var(--nav-icon-txt);
+  color:var(--nav-icon-active-txt);
   font-weight: 600;
 }
 

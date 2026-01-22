@@ -15,7 +15,7 @@ function Card({ title, subtitle, icon, items = [], highlight = false, footer }) 
         </div>
       </div>
 
-      <div className="card-body-content">
+      <div className="card-body-content mt-5">
         {items.map((item, index) => (
           <div key={index} className="card-list-item" onClick={item.onClick}>
             <div className="item-left-section">

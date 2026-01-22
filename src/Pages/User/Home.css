@@ -8,6 +8,12 @@
   padding: 20px;
   padding-bottom: 120px; /* Space for the floating nav */
 }
+.topbar{
+  background-color: var(--nav-box-bg);
+}
+.right{
+  border: 1px solid var(--card-border);
+}
 
 .main-content {
   width: 100%;

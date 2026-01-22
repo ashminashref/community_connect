@@ -7,20 +7,24 @@ import BentoGrid from '../../Components/User/Home/BentoGrid'
 function Home() {
   return (
     <div>
-        <div className="topbar d-flex align-items-center justify-content-between gap-5">
-<div className="left">
-    <h6 className='body-txt'>Good Morning</h6>
-    <h4 className='curly-txt'>Ashmin</h4>
+        <div className="topbar fixed-top  p-3  d-flex align-items-center justify-content-between gap-5">
+<div className="left d-flex flex-column align-items-start justify-content-center">
+    {/* <h6 className='body-txt'>Good Morning</h6> */}
+    <h4 className=' m-0 p-0'>tM</h4>
+    {/* <p className='m-0 p-0'>Thalayad</p> */}
 </div>
-<div className="right">
- <ThemeToggle/>
+<div className="right p-1  rounded d-flex  align-items-center justify-content-center">
+ <ThemeToggle className =""/>
 </div>
 
         </div>
-        <Usercard/>
+        <div className='pt-5'>
+ <Usercard/>
         <BentoGrid/>
        
         <Floatingnav/>
+        </div>
+       
     </div>
   )
 }
