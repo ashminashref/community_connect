@@ -196,7 +196,7 @@ a,
 }
 
 .amount-input::placeholder {
-  color: #64748b;
+  color: #0c0c0c;
 }
 
 .amount-input:focus {
