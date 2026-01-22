@@ -260,7 +260,7 @@ a,
 ================================ */
 @media (max-width: 768px) {
   .payment-wrapper {
-    background-color: white;
+    /* background-color: white; */
   }
 
   .payment-container {
