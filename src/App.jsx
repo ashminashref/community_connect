@@ -5,6 +5,8 @@ import { ThemeProvider } from './Theme/Themecontext'
 import Home from './Pages/User/Home'
 import Notifications from './Pages/User/Notifications'
 import Profile from './Pages/User/Profile'
+import PaymentPage from './Components/Payment'
+import Certificate from './Components/Certificate'
 
 function App() {
 
@@ -18,6 +20,9 @@ function App() {
           <Route path='' element = {<Home/>}/>
           <Route path = 'notification/' element = {<Notifications/>}/>
           <Route path='profile/' element={<Profile/>}/>
+          <Route path='payment/' element={<PaymentPage/>}/>
+          <Route path='certificate/' element={<Certificate/>}/>
+
         </Routes>
           </div>
       </ThemeProvider>
