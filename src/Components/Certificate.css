@@ -1,7 +1,6 @@
 /* Layout Strategy: Full screen on desktop, app-width on mobile */
 .certificate-page-wrapper {
   min-height: 100vh;
-  background-color: #fcfcfc;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -9,12 +8,10 @@
 
 .certificate-content-container {
   width: 100%;
-  max-width: 1200px; /* Provides the 'Full Width' feel on desktop */
-  padding: 2.5rem;
+  max-width: 1200px; 
   box-sizing: border-box;
 }
 
-/* Header Styling - Matching the minimalist serif look */
 .certificate-header {
   display: flex;
   align-items: flex-start;
@@ -27,24 +24,25 @@
   border: none;
   cursor: pointer;
   padding-top: 0.5rem;
-  color: #1a1a1a;
+  color: var(--text-primary-color);
   transition: opacity 0.2s;
 }
 
 .certificate-back-btn:hover {
-  opacity: 0.6;
+    transform: translateX(-3px);
+
 }
 
 .certificate-header-text h1 {
-  font-family: 'Georgia', serif;
+  font-family: 'PlayFair Display', serif;
   font-size: 2rem;
   margin: 0;
-  color: #111827;
+  color:var(--text-primary-color);
   font-weight: 500;
 }
 
 .certificate-header-text p {
-  color: #6b7280;
+  color: var(--text-secondary-color);
   margin: 4px 0 0 0;
   font-size: 1rem;
 }
@@ -53,7 +51,7 @@
 .certificate-section-label {
   font-size: 1rem;
   font-weight: 600;
-  color: #374151;
+  color: var(--text-primary-color);
   margin-bottom: 1.25rem;
 }
 
@@ -70,26 +68,25 @@
   align-items: center;
   gap: 1rem;
   padding: 1.25rem;
-  background: white;
-  border: 1px solid #f3f4f6;
+  background: var(--card-item-bg);
+  border: 1px solid var(--card-border);
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .certificate-type-item:hover {
-  border-color: #e5e7eb;
   transform: translateY(-2px);
 }
 
 .certificate-type-item.active {
-  border-color: #1a2e23;
-  background: #fdfdfd;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  border-color:var(--card-border);
+  background: var(--card-item-bg-active);
+  /* box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); */
 }
 
 .certificate-icon-box {
-  background: #f9fafb;
+  background: var(--icon-bg);
   padding: 12px;
   border-radius: 12px;
   display: flex;
@@ -99,30 +96,31 @@
 }
 
 .certificate-type-item.active .certificate-icon-box {
-  background: #1a2e23;
-  color: white;
+  background: var(--icon-bg);
+  color: var(--text-primary-color);
 }
 
 .certificate-type-info h3 {
   font-size: 1.05rem;
   margin: 0;
-  color: #111827;
+  color: var(--text-primary-color);
 }
 
 .certificate-type-info p {
   font-size: 0.85rem;
-  color: #9ca3af;
+  color: var(--text-secondary-color);
   margin: 2px 0 0 0;
+  font-family: 'PlayFair Display';
 }
 
 /* Form Card Styling */
 .certificate-form-card {
-  background: white;
-  border: 1px solid #f3f4f6;
+  background: var(--card-item-bg);
+  border: 1px solid var(--card-border);
   border-radius: 24px;
   padding: 2.5rem;
   margin-bottom: 2rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02); */
 }
 
 .certificate-input-field {
@@ -133,7 +131,7 @@
   display: block;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #4b5563;
+  color: var(--text-secondary-color);
   margin-bottom: 0.75rem;
 }
 
@@ -147,18 +145,18 @@
 .certificate-field-icon {
   position: absolute;
   left: 1.25rem;
-  color: #9ca3af;
+  color: var(--nav-icon-txt);
 }
 
 .certificate-input-wrapper input,
 .certificate-input-wrapper textarea {
   width: 100%;
   padding: 0.9rem 1.25rem 0.9rem 3.25rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--card-border);
   border-radius: 14px;
-  background: #f9fafb;
+  background: var(--nav-box-bg);
   font-size: 1rem;
-  color: #1f2937;
+  color: var(--text-primary-color);
   outline: none;
   transition: all 0.2s;
 }
@@ -170,8 +168,8 @@
 
 .certificate-input-wrapper input:focus,
 .certificate-input-wrapper textarea:focus {
-  border-color: #1a2e23;
-  background: white;
+  border-color: var(--card-border);
+  background:var(--card-item-bg-active);
   box-shadow: 0 0 0 4px rgba(26, 46, 35, 0.05);
 }
 
@@ -184,7 +182,7 @@
 
 /* Upload Zone */
 .certificate-upload-zone {
-  border: 2px dashed #e5e7eb;
+  border: 2px dashed var(--text-secondary-color);
   border-radius: 20px;
   padding: 3rem;
   text-align: center;
@@ -192,22 +190,22 @@
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  background: #fcfcfc;
+  background: var(--nav-box-bg);
   cursor: pointer;
   transition: border-color 0.2s;
 }
 
 .certificate-upload-zone:hover {
-  border-color: #1a2e23;
+  border-color: var(--card-border);
 }
 
 .certificate-upload-zone p {
-  color: #4b5563;
+  color: var(--text-primary-color);
   font-size: 1rem;
 }
 
 .certificate-upload-zone span {
-  color: #1a2e23;
+  color: var(--text-secondary-color);
   font-weight: 700;
   text-decoration: underline;
 }
@@ -236,7 +234,6 @@
 @media (max-width: 768px) {
   .certificate-content-container {
     max-width: 500px; /* Constrains the layout to look like an App */
-    padding: 1.5rem;
   }
 
   .certificate-header-text h1 {

@@ -5,6 +5,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import '../../src/Components/Certificate.css';
+import Topbar from '../Common/User/Topbar';
+import Floatingnav from '../Common/User/FloatingNav';
+import SubmitButton from '../UI/SubmitButton';
 
 const CertificateRequest = () => {
   const navigate = useNavigate();
@@ -21,7 +24,8 @@ const CertificateRequest = () => {
 
   return (
     <div className="certificate-page-wrapper">
-      <div className="certificate-content-container">
+      <Topbar/>
+      <div className="certificate-content-container mt-5 py-5 pt-5">
 
         {/* Header */}
         <header className="certificate-header">
@@ -157,11 +161,14 @@ const CertificateRequest = () => {
         </section>
 
         {/* Submit */}
-        <button className="certificate-submit-btn">
+        {/* <button className="certificate-submit-btn">
           Submit Request
-        </button>
+        </button> */}
+
+        <SubmitButton/>
 
       </div>
+      <Floatingnav/>
     </div>
   );
 };
