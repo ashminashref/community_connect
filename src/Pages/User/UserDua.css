@@ -62,3 +62,25 @@
         font-size: 1.5rem;
     }
 }
+
+
+/* The Progress Bar that slides behind the text */
+.progress-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: rgba(40, 167, 69, 0.08); /* Light green tint */
+    transition: width 0.3s ease-out;
+    z-index: 0;
+}
+
+
+.counter-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
