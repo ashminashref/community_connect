@@ -1,9 +1,13 @@
 .Link-txt{
     text-decoration: none !important;
     color: var(--text-primary-color) !important;
+    font-size: 1.25rem;
+    font-family: 'DM Sans';
+    
 }
 .link-p{
     color: var(--text-secondary-color);
+    font-family: 'PlayFair Display';
 }
 .settings-card{
     background-color: var(--card-bg-secondary);

@@ -1,5 +1,4 @@
 import React from 'react'
-import ThemeToggle from '../../UI/ThemeToggle'
 
 function Topbar() {
   return (
@@ -10,9 +9,7 @@ function Topbar() {
     <h4 className=' m-0 p-0'>tM</h4>
     {/* <p className='m-0 p-0'>Thalayad</p> */}
 </div>
-<div className="right p-1  rounded d-flex  align-items-center justify-content-center">
- <ThemeToggle className =""/>
-</div>
+
 
         </div>
     </div>

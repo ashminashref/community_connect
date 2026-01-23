@@ -9,15 +9,15 @@ import './Profile.css'
 /**
  * Dynamically renders either a Link (for navigation) or a Div (for actions like Toggles)
  */
-const SettingRow = ({ icon: Icon, title, subtitle, linkTo, action, isLast }) => {
+const SettingRow = ({ icon: Icon, title, subtitle, linkTo, action }) => {
   const content = (
-    <div className={`d-flex align-items-center justify-content-between py-4 ${!isLast ? 'border-bottom' : ''}`}>
+    <div className="d-flex align-items-center justify-content-between py-4 ">
       <div className="d-flex align-items-center gap-3">
         <div className="icon-box d-flex align-items-center justify-content-center rounded-3" style={{ width: '42px', height: '42px' }}>
           <Icon size={20} className="Link-icon" />
         </div>
         <div>
-          <h6 className="mb-0 fw-semibold" style={{ fontSize: '1.05rem' }}>{title}</h6>
+          <h6 className="Link-txt">{title}</h6>
           <p className="mb-0 link-p " style={{ fontSize: '0.8rem' }}>{subtitle}</p>
         </div>
       </div>
@@ -45,7 +45,7 @@ function Profile() {
   const { theme } = useTheme();
 
   return (
-    <div className="container pb-5 mb-5">
+    <div className=" pb-5 mb-5">
       {/* Top User Profile Card */}
       <Usercard />
 

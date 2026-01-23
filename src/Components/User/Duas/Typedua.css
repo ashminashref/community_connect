@@ -1,9 +1,37 @@
-.dua-li{
+
+.dua-ul {
+    list-style: none;
+    padding: 0; /* Removes default browser indentation */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Consistent spacing between items */
+}
+
+.dua-li {
     background-color: var(--card-bg-secondary) !important;
     border: 1px solid var(--card-border);
-    transition: ease-in-out 0.3s;
-    
+    transition: transform 0.3s ease;
+    /* Remove padding: 0px and margin: 0px from here */
 }
+
+.dua-li:hover {
+    transform: scale(1.01);
+}
+
+
+.dua-li {
+    background-color: var(--card-bg-secondary) !important;
+    border: 1px solid var(--card-border);
+    transition: transform 0.3s ease;
+    /* Remove padding: 0px and margin: 0px from here */
+}
+
+.dua-li:hover {
+    transform: scale(1.01);
+}
+
+
 .dua-li:hover{
     transform: scale(1.02);
     cursor: pointer;
