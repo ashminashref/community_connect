@@ -42,7 +42,7 @@ function BentoGrid() {
             subtitle="Events & prayer times"
             highlight={true}
             items={[
-              { name: "Daily Duas", sub: "Supplications", showArrow: true, onClick:()=>navigate('/duas') },
+              { name: "Daily Duas", sub: "Supplications", showArrow: true, onClick:()=>navigate('/typedua') },
               { name: "Friday Congregation", sub: "Tomorrow, 1:00 PM", icon: <Clock size={14}/> }
             ]}
             footer="Next: Maghrib 6:18 PM"

@@ -1,0 +1,11 @@
+.Link-txt{
+    text-decoration: none !important;
+    color: var(--text-primary-color) !important;
+}
+.link-p{
+    color: var(--text-secondary-color);
+}
+.settings-card{
+    background-color: var(--card-bg-secondary);
+    border: 1px solid var(  --card-border);
+}

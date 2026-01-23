@@ -8,6 +8,7 @@ import Profile from './Pages/User/Profile'
 import PaymentPage from './Components/Payment'
 import Certificate from './Components/Certificate'
 import UserDua from './Pages/User/UserDua'
+import Typedua from './Components/User/Duas/Typedua'
 
 function App() {
 
@@ -23,7 +24,8 @@ function App() {
           <Route path='userprofile/' element={<Profile/>}/>
           <Route path='payment/' element={<PaymentPage/>}/>
           <Route path='certificate/' element={<Certificate/>}/>
-          <Route path = 'duas' element = {<UserDua/>}/>
+          <Route path = 'duas/' element = {<UserDua/>}/>
+          <Route path='typedua/' element = {<Typedua/>}/>
         </Routes>
           </div>
       </ThemeProvider>

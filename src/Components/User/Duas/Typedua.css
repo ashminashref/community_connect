@@ -1,0 +1,20 @@
+.dua-li{
+    background-color: var(--card-bg-secondary) !important;
+    border: 1px solid var(--card-border);
+    transition: ease-in-out 0.3s;
+    
+}
+.dua-li:hover{
+    transform: scale(1.02);
+    cursor: pointer;
+   
+}
+.dua-h5{
+    font-family: 'DM Sans';
+    margin-bottom: 5px !important;
+}
+.dua-subtitle{
+    font-family: 'PlayFair Display';
+    font-size: 0.85rem;
+    color: var(--text-secondary-color);
+}

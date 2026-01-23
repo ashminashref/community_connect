@@ -24,11 +24,23 @@
   cursor: pointer;
   background-color: var(--nav-icon-active);
 }
-.nav-item.active {
+
+
+.nav-link.active .nav-item {
   background: var(--nav-icon-active);
-  color:var(--nav-icon-active-txt);
+  color: var(--nav-icon-active-txt);
   font-weight: 600;
 }
+
+.nav-item {
+  padding: 8px 38px;
+  border-radius: 33px;
+  font-size: 0.85rem;
+  color: var(--nav-icon-txt);
+  transition: all 0.3s ease; 
+}
+
+/* ... keep the rest of your CSS ... */
 
 @media screen and (max-width: 768px) {
   .nav-item {
