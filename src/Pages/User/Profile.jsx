@@ -62,7 +62,7 @@ function Profile() {
           icon={CreditCard} 
           title="Payment History" 
           subtitle="Track contributions" 
-          linkTo="/payments"
+          linkTo="/paymentHistory"
         />
 
         <SettingRow 

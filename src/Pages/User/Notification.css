@@ -1,0 +1,94 @@
+/* Notification.css */
+
+/* Container & Background */
+.container {
+    max-width: 600px; /* Keeps it looking like a mobile app even on desktop */
+    min-height: 100vh;
+}
+
+/* Back Button & Header */
+.btn-light {
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 12px;
+    transition: all 0.2s ease;
+}
+
+.btn-light:hover {
+    background-color: #e2e6ea;
+    transform: translateX(-2px);
+}
+
+h5 {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 5px solid transparent; /* Placeholder for status color */
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Status-based Border Accents */
+.card:has(.bg-warning) {
+    border-left-color: #ffc107;
+}
+
+.card:has(.bg-success) {
+    border-left-color: #198754;
+}
+
+/* Typography within Cards */
+.card-title {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #6c757d !important;
+}
+
+/* Badges */
+.badge {
+    padding: 6px 10px;
+    font-weight: 500;
+    text-transform: capitalize;
+    border-radius: 6px;
+}
+
+/* Date Text */
+.text-secondary {
+    font-size: 0.8rem;
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* Bottom Action Button */
+.btn-primary {
+    padding: 12px 40px;
+    font-weight: 600;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    border: none;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(13, 110, 253, 0.4);
+    background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
+}

@@ -9,6 +9,8 @@ import PaymentPage from './Components/Payment'
 import Certificate from './Components/Certificate'
 import UserDua from './Pages/User/UserDua'
 import Typedua from './Components/User/Duas/Typedua'
+import PaymentHistory from './Components/PaymentHistory'
+import DocumentManager from './Components/Document'
 
 function App() {
   return (
@@ -28,6 +30,9 @@ function App() {
           
           {/* CATEGORY ROUTE - Changed :category to :categoryName to match your component */}
           <Route path='/dua/:categoryName' element={<UserDua />} />
+          <Route path='/paymentHistory' element={<PaymentHistory/>}/>
+          <Route path='/documents' element={<DocumentManager/>}/>
+
         </Routes>
       </div>
     </ThemeProvider>
