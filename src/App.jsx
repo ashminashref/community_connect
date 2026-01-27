@@ -12,6 +12,7 @@ import Typedua from './Components/User/Duas/Typedua'
 import PaymentHistory from './Components/PaymentHistory'
 import DocumentManager from './Components/Document'
 import Dashboard from './admin/Dashboard'
+import MembersContent from './admin/Members'
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path='/paymentHistory' element={<PaymentHistory/>}/>
           <Route path='/documents' element={<DocumentManager/>}/>
           <Route path='/dashboard'element={<Dashboard/>}/>
+          <Route path='/members' element={<MembersContent/>}/>
 
         </Routes>
       </div>
