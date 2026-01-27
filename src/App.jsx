@@ -11,6 +11,7 @@ import UserDua from './Pages/User/UserDua'
 import Typedua from './Components/User/Duas/Typedua'
 import PaymentHistory from './Components/PaymentHistory'
 import DocumentManager from './Components/Document'
+import Dashboard from './admin/Dashboard'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path='/dua/:categoryName' element={<UserDua />} />
           <Route path='/paymentHistory' element={<PaymentHistory/>}/>
           <Route path='/documents' element={<DocumentManager/>}/>
+          <Route path='/dashboard'element={<Dashboard/>}/>
 
         </Routes>
       </div>
