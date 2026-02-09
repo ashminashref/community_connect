@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Card, Button, Badge } from 'react-bootstrap';
 import { Plus, Edit2, Trash2, Calendar, Users } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'; // 1. Import useNavigate
 import './Teams.css';
 
 const teamsData = [
@@ -37,6 +38,8 @@ const teamsData = [
 ];
 
 const TeamsPage = () => {
+  const navigate = useNavigate(); // 2. Initialize navigate hook
+
   return (
     <div className="animate-fade-in">
       {/* Header Section */}
@@ -47,10 +50,16 @@ const TeamsPage = () => {
           </div>
           <div>
             <h4 className="fw-bold mb-0 page-title">Teams</h4>
-            <small className="text-muted">3 teams created</small>
+            <small className="text-muted">{teamsData.length} teams created</small>
           </div>
         </div>
-        <Button variant="dark" className="btn-custom py-2 px-4 d-flex align-items-center gap-2">
+        
+        {/* 3. Updated onClick to navigate to 'add' */}
+        <Button 
+          variant="dark" 
+          className="btn-custom py-2 px-4 d-flex align-items-center gap-2"
+          onClick={() => navigate("add")}
+        >
           <Plus size={18} /> Create Team
         </Button>
       </div>

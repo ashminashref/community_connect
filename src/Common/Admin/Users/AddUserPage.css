@@ -1,0 +1,63 @@
+/* Container Animation */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Card Styling to match the screenshot */
+.card {
+  border-radius: 16px !important;
+  border: 1px solid #f0f0f0 !important;
+  background-color: #ffffff;
+}
+
+/* Customizing Input Fields */
+.form-label {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+  border-radius: 10px !important;
+  border: 1.5px solid #e0e0e0 !important;
+  padding: 10px 15px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/* The gold-ish focus ring from your screenshot */
+.form-control:focus, .form-select:focus {
+  border-color: #d4af37 !important; /* Gold/Bronze accent */
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.15) !important;
+  outline: none;
+}
+
+/* Dark Green Submit Button */
+.btn-dark {
+  background-color: #1a2e1a !important; /* Deep forest green */
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-dark:hover {
+  background-color: #243f24 !important;
+  transform: translateY(-1px);
+}
+
+.btn-dark:active {
+  transform: translateY(0);
+}
+
+/* Back button hover effect */
+.btn-link:hover {
+  color: #d4af37 !important;
+  background-color: rgba(0,0,0,0.05);
+  border-radius: 50%;
+}
