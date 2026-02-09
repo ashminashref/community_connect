@@ -1,22 +1,25 @@
-import { Route, Routes, Navigate } from 'react-router-dom'
-import './App.css'
-import { ThemeProvider } from './Theme/Themecontext'
-import Home from './Pages/User/Home'
-import Notifications from './Pages/User/Notifications'
-import Profile from './Pages/User/Profile'
-import PaymentPage from './Components/Payment'
-import Certificate from './Components/Certificate'
-import UserDua from './Pages/User/UserDua'
-import Typedua from './Components/User/Duas/Typedua'
-import AdminLayout from './Common/Admin/Home/AdminLayout'
-import AnnouncementsPage from './Common/Admin/Announcements/AnnouncementPage'
-import UsersPage from './Common/Admin/Users/UserPage'
-import { Nav } from 'react-bootstrap'
-import AdminPaymentPage from './Common/Admin/Payments/AdminPaymentPage'
-import TeamsPage from './Common/Admin/Teams/TeamsPage'
-import LibraryPage from './Common/Admin/Library/LibraryPage'
-import CertificatesPage from './Common/Admin/Certificates/CertifcatesPage'
-import AnalyticsPage from './Common/Admin/Analytics/AnalyticsPage'
+import { Route, Routes, Navigate } from 'react-router-dom';
+import './App.css';
+import { ThemeProvider } from './Theme/Themecontext';
+
+// User Pages
+import Home from './Pages/User/Home';
+import Notifications from './Pages/User/Notifications';
+import Profile from './Pages/User/Profile';
+import PaymentPage from './Components/Payment';
+import Certificate from './Components/Certificate';
+import UserDua from './Pages/User/UserDua';
+import Typedua from './Components/User/Duas/Typedua';
+
+// Admin Pages
+import AdminLayout from './Common/Admin/Home/AdminLayout';
+import AnnouncementsPage from './Common/Admin/Announcements/AnnouncementPage';
+import UsersPage from './Common/Admin/Users/UserPage';
+import AdminPaymentPage from './Common/Admin/Payments/AdminPaymentPage';
+import TeamsPage from './Common/Admin/Teams/TeamsPage';
+import LibraryPage from './Common/Admin/Library/LibraryPage';
+import CertificatesPage from './Common/Admin/Certificates/CertifcatesPage';
+import AnalyticsPage from './Common/Admin/Analytics/AnalyticsPage';
 
 function App() {
   return (
@@ -35,22 +38,22 @@ function App() {
 
           {/* Admin Routes - NESTED STRUCTURE */}
           <Route path='/admin' element={<AdminLayout />}>
-            
+            {/* Redirect /admin to /admin/announcements by default */}
             <Route index element={<Navigate to="announcements" replace />} />
 
+            {/* Sub-routes render inside the AdminLayout Outlet */}
             <Route path="announcements" element={<AnnouncementsPage />} />
-            <Route path ='users' element ={<UsersPage/>}/>
-            <Route path = 'payments' element = {<AdminPaymentPage/>}/>
-            <Route path = 'teams' element = {<TeamsPage/>}/>
-            <Route path = 'library' element = {<LibraryPage/>}/>
-            <Route path = 'certificates' element  = {<CertificatesPage/>}/>
-            <Route path = 'analytics' element = {<AnalyticsPage/>} />
+            <Route path="users" element={<UsersPage />} />
+            <Route path="payments" element={<AdminPaymentPage />} />
+            <Route path="teams" element={<TeamsPage />} />
+            <Route path="library" element={<LibraryPage />} />
+            <Route path="certificates" element={<CertificatesPage />} />
+            <Route path="analytics" element={<AnalyticsPage />} />
           </Route>
-
         </Routes>
       </div>
     </ThemeProvider>
-  )
+  );
 }
 
 export default App;
