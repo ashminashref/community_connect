@@ -10,14 +10,23 @@
   color: var(--text-main);
 }
 
-.type-badge {
-  background-color: #f1f3f5;
-  color: #495057;
+.badge.type-badge {
+  background-color: #f1f3f5 !important;
+  color: #495057 !important;
+
   font-weight: 500;
-  border-radius: 8px;
+  font-size: 13px;
+
   padding: 6px 12px;
+  border-radius: 8px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   text-transform: capitalize;
 }
+
 
 /* Status Pills */
 .status-pill {
@@ -28,9 +37,9 @@
   text-transform: capitalize;
 }
 
-.status-pill.completed { background-color: #e6f3ed; color: #1e4d3a; border: 1px solid #c3e6d5; }
-.status-pill.pending { background-color: #fff9db; color: #856404; border: 1px solid #ffeeba; }
-.status-pill.failed { background-color: #fceaea; color: #d9534f; border: 1px solid #f5c6cb; }
+.status-pill.completed { background-color: #e6f3ed !important; color: #242927; border: 1px solid #c3e6d5; }
+.status-pill.pending { background-color: #fff9db !important; color: #856404; border: 1px solid #ffeeba; }
+.status-pill.failed { background-color: #fceaea !important; color: #d9534f; border: 1px solid #f5c6cb; }
 
 .custom-table thead th {
   background-color: transparent;

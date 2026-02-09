@@ -32,24 +32,40 @@
 /* Role Badges */
 .role-badge {
   padding: 6px 14px;
-  border-radius: 50px;
+  border-radius: 70px;
   font-weight: 500;
   font-size: 0.75rem;
   text-transform: capitalize;
 }
 
-.role-badge.admin { background-color: #e9ecef; color: #495057; }
-.role-badge.member { background-color: #f1f3f5; color: #868e96; }
-.role-badge.volunteer { background-color: #fff9db; color: #f08c00; }
+.role-badge.admin { background-color: #dde2e5 !important; color: #0d0e0f; }
+.role-badge.member { background-color: #d6d7d7 !important; color: #5d6165; }
+.role-badge.volunteer { background-color: #fff9db !important; color: #161514; }
 
 /* Status Badge */
-.status-badge-active {
-  background-color: #1b2e25;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 50px;
-  font-size: 0.75rem;
+.badge.status-badge-active {
+  background-color: #1b2e25 !important;
+  color: #ffffff !important;
+
+  min-width: 64px;
+  height: 26px;
+  padding: 0 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;        /* 🔑 THIS FIXES vertical centering */
+  border-radius: 999px;
 }
+.badge {
+  line-height: 1;
+  vertical-align: baseline;
+}
+
+
 
 .custom-table thead th {
   color: #888;

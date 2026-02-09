@@ -11,7 +11,7 @@ const AdminLayout = () => {
 
   const tabs = [
     "Announcements", "Users", "Payments", 
-    "Teams", "Library", "Certificates", "Analytics"
+    "Teams", "Library", "Certificates","Services", "Analytics"
   ];
 
   return (

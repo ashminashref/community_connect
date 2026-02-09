@@ -1,43 +1,67 @@
+/* Card */
 .cert-card {
-  background-color: var(--bg-card, #ffffff);
+  background-color: #ffffff;
   border-radius: 24px;
 }
 
+/* Icon */
 .cert-icon-wrapper {
-  background-color: var(--pill-bg, #f1eee4);
+  background-color: #f1eee4;
   padding: 10px;
   border-radius: 12px;
-  color: var(--text-main);
+  color: #1b2e25;
 }
 
+/* Small text */
 .smallest {
   font-size: 0.7rem;
 }
 
-/* Category/Type Badges */
-.cert-type-badge {
-  background-color: transparent;
-  color: #444;
+/* Certificate Type Badge (FIXED) */
+.badge.cert-type-badge {
+  background-color: transparent !important;
+  color: #444 !important;
   border: 1px solid #ddd;
   font-weight: 500;
-  border-radius: 50px;
+  font-size: 12px;
+  border-radius: 999px;
   padding: 5px 12px;
   text-transform: capitalize;
 }
 
-/* Status Styling */
-.status-pill {
+/* Status Pills (BASE) */
+.badge.status-pill {
   padding: 6px 14px;
-  border-radius: 50px;
+  border-radius: 999px;
   font-weight: 500;
-  font-size: 0.75rem;
+  font-size: 12px;
   text-transform: capitalize;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+
+  background-color: #ffffff !important;
 }
 
-.status-pill.pending { background-color: #f1eee4; color: #856404; }
-.status-pill.approved { background-color: #e6f3ed; color: #1e4d3a; }
-.status-pill.rejected { background-color: #fceaea; color: #d9534f; }
+/* Status colors */
+.badge.status-pill.pending {
+  background-color: #f1eee4 !important;
+  color: #856404 !important;
+}
 
+.badge.status-pill.approved {
+  background-color: #e6f3ed !important;
+  color: #1e4d3a !important;
+}
+
+.badge.status-pill.rejected {
+  background-color: #fceaea !important;
+  color: #d9534f !important;
+}
+
+/* Table header */
 .custom-table thead th {
   color: #888;
   font-size: 0.8rem;
@@ -45,8 +69,12 @@
   border-bottom: 1px solid #eee;
 }
 
+/* Action icons */
+.action-icon {
+  transition: all 0.2s ease;
+}
+
 .action-icon:hover {
   opacity: 0.7;
   transform: scale(1.1);
-  transition: all 0.2s;
 }

@@ -1,0 +1,61 @@
+/* Page background handled by admin layout */
+:root {
+  --bg-color: #f8f9fa;          /* off-white background */
+  --card-bg: #ffffff;          /* pure white cards */
+  --border-color: #e5e5e5;
+
+  --text-primary: #111111;      /* near black */
+  --text-secondary: #555555;    /* muted gray */
+
+  --accent-black: #000000;
+  --accent-gray: #f1f1f1;
+}
+
+/* Service cards grid */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Service card */
+.service-box {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 20px;
+
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  transition: all 0.25s ease;
+}
+
+.service-box:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-black);
+}
+
+/* Icon */
+.service-icon {
+  background-color: var(--accent-gray);
+  color: var(--accent-black);
+  padding: 12px;
+  border-radius: 12px;
+  width: fit-content;
+}
+
+/* Manage button (Services page only) */
+.service-box .btn {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: none;
+}
+
+.service-box .btn:hover {
+  background-color: #222222 !important;
+  color: #ffffff !important;
+}
+

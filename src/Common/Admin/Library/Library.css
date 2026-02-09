@@ -1,51 +1,87 @@
+/* Card */
 .library-card {
-  background-color: var(--bg-card, #ffffff);
+  background-color: #ffffff;
   border-radius: 24px;
 }
 
+/* Icon */
 .library-icon-wrapper {
-  background-color: var(--pill-bg, #f1eee4);
+  background-color: #f1eee4;
   padding: 10px;
   border-radius: 12px;
-  color: var(--text-main);
+  color: #1b2e25;
 }
 
-.category-badge {
-  background-color: #f1f3f5;
-  color: #495057;
+/* Category badge (FIXED for Bootstrap Badge) */
+.badge.category-badge {
+  background-color: #f1f3f5 !important;
+  color: #495057 !important;
   font-weight: 500;
-  border-radius: 8px;
+  font-size: 13px;
   padding: 6px 12px;
+  border-radius: 8px;
+  text-transform: capitalize;
 }
 
-/* Stock Status Pills */
-.status-pill {
+/* Stock Status Pills (BASE) */
+.badge.status-pill {
   padding: 6px 14px;
-  border-radius: 50px;
+  border-radius: 999px;
   font-weight: 500;
-  font-size: 0.75rem;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  background-color: #ffffff !important;
+  color: #000000 !important;
 }
 
-.status-pill.instock {
-  background-color: #e6f3ed;
-  color: #1e4d3a;
+/* In stock */
+.badge.status-pill.instock {
+  background-color: #e6f3ed !important;
+  color: #1e4d3a !important;
   border: 1px solid #c3e6d5;
 }
 
-.status-pill.outofstock {
-  background-color: #fceaea;
-  color: #d9534f;
+/* Out of stock */
+.badge.status-pill.outofstock {
+  background-color: #fceaea !important;
+  color: #d9534f !important;
   border: 1px solid #f5c6cb;
 }
 
+/* Table header */
 .custom-table thead th {
   color: #888;
   font-size: 0.85rem;
-  padding-top: 1.5rem;
+  padding-top: 1.25rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #f0f0f0;
 }
 
+/* Book title & quantity sizing */
+.title-text {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+td.fw-medium {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Buttons */
 .btn-custom {
   border-radius: 50px;
+}
+
+/* Action buttons */
+.action-btn {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.action-btn:hover {
+  opacity: 1;
 }

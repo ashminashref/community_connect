@@ -29,8 +29,8 @@
   text-transform: capitalize;
 }
 
-.status-pill.active { background-color: #e6f3ed; color: #1e4d3a; }
-.status-pill.upcoming { background-color: #fef9e7; color: #947600; }
+.status-pill.active { background-color: #e6f3ed !important; color: #1e4d3a; }
+.status-pill.upcoming { background-color: #fef9e7 !important; color: #947600; }
 
 /* Avatar Grouping */
 .avatar-group {

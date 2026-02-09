@@ -1,28 +1,38 @@
-/* AdminLayout.css */
+/* Background */
 .admin-bg {
-  background-color:var(--bg-color) !important; /* The cream/off-white background */
+  background-color: var(--bg-color) !important;
   min-height: 100vh;
 }
 
+/* Dashboard title */
 .dashboard-title {
-  font-family: 'Playfair Display', serif; /* Or any serif font */
+  font-family: 'Playfair Display', serif;
   color: var(--text-primary-color);
 }
 
+/* Navbar base */
 .admin-navbar .nav-link {
-  color:var(--text-secondary-color);
+  color: var(--text-secondary-color);
   font-size: 0.95rem;
   transition: all 0.2s ease;
   border: 1px solid transparent;
+  white-space: nowrap;
 }
 
-.admin-navbar .nav-link.active {
-  background-color: #f1eee4 !important; /* Soft tan color */
-  color: var(--text-secondary-color);
+/* 🔥 ACTIVE TAB (FIXED) */
+.admin-navbar.nav-pills .nav-link.active {
+  background-color: #f1eee4 !important;
+  color: var(--text-secondary-color) !important;
   font-weight: 500;
-  
+  border: 1px solid #e4dfd2;
 }
 
+/* Hover state */
 .admin-navbar .nav-link:hover:not(.active) {
-  background-color:var(--card-bg-secondary);
+  background-color: var(--card-bg-secondary)
+}
+
+/* Optional: smoother pills */
+.admin-navbar .nav-link {
+  border-radius: 999px;
 }
