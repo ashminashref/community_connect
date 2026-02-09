@@ -1,12 +1,12 @@
 /* Card */
 .cert-card {
-  background-color: #ffffff;
+  background-color: var(--bg-card, #ffffff);
   border-radius: 24px;
 }
 
 /* Icon */
 .cert-icon-wrapper {
-  background-color: #f1eee4;
+  background-color: var(--pill-bg, #f1eee4);
   padding: 10px;
   border-radius: 12px;
   color: #1b2e25;
@@ -17,10 +17,10 @@
   font-size: 0.7rem;
 }
 
-/* Certificate Type Badge (FIXED) */
-.badge.cert-type-badge {
-  background-color: transparent !important;
-  color: #444 !important;
+/* Category/Type Badges */
+.cert-type-badge {
+  background-color: transparent;
+  color: #444;
   border: 1px solid #ddd;
   font-weight: 500;
   font-size: 12px;
@@ -63,9 +63,9 @@
 
 /* Table header */
 .custom-table thead th {
-  color: #888;
+  color:var(--text-primary-color);
   font-size: 0.8rem;
-  background-color: #fcfbf7;
+  background-color: var(--card-bg-primary);
   border-bottom: 1px solid #eee;
 }
 

@@ -17,11 +17,10 @@ const AdminLayout = () => {
   return (
     <div className="admin-bg">
       <Container className="py-4">
-        {/* Persistent Header with Theme Toggle */}
         <header className="mb-4 d-flex justify-content-between align-items-center">
           <div>
             <h2 className="fw-bold dashboard-title">Admin Dashboard</h2>
-            <p className="text-muted mb-0">Manage requests, users, and content</p>
+            <p className="dashboard-subtitle mb-0">Manage requests, users, and content</p>
           </div>
 
           {/* Integration of your ThemeToggle component */}
@@ -35,7 +34,7 @@ const AdminLayout = () => {
           variant="pills" 
           activeKey={currentTab} 
           onSelect={(selectedKey) => navigate(selectedKey)} 
-          className="admin-navbar mb-5 overflow-auto flex-nowrap"
+          className="admin-navbar gap-3 mb-5 overflow-auto no-scrollbar flex-nowrap"
         >
           {tabs.map((tab) => (
             <Nav.Item key={tab}>

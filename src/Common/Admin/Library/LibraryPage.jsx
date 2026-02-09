@@ -16,12 +16,12 @@ const LibraryPage = () => {
       {/* Header Section */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
         <div className="d-flex align-items-center gap-3">
-          <div className="library-icon-wrapper">
+          <div className="library-icon-wrapper ">
             <BookOpen size={24} />
           </div>
           <div>
             <h4 className="fw-bold mb-0 page-title">Library</h4>
-            <small className="text-muted">3 books in stock</small>
+            <small className="subtitle-text">3 books in stock</small>
           </div>
         </div>
         <Button variant="dark" className="btn-custom py-2 px-4 d-flex align-items-center gap-2">
@@ -33,17 +33,17 @@ const LibraryPage = () => {
       <Row className="mb-4 g-3">
         <Col lg={7}>
           <InputGroup className="search-input-group">
-            <InputGroup.Text className="bg-white border-end-0 rounded-start-pill">
-              <Search size={18} className="text-muted" />
+            <InputGroup.Text className="border-end-0 search-icon-box rounded-start-pill">
+              <Search size={18} className="search-icon" />
             </InputGroup.Text>
             <Form.Control 
               placeholder="Search books by title or author..." 
-              className="border-start-0 rounded-end-pill py-2" 
+              className="border-start-0 input-box rounded-end-pill py-2" 
             />
           </InputGroup>
         </Col>
         <Col xs={6} lg={3}>
-          <Form.Select className="rounded-pill py-2 border-light shadow-sm">
+          <Form.Select className="rounded-pill py-2 select shadow-sm">
             <option>All Categories</option>
             <option>Hadith</option>
             <option>Tafsir</option>
@@ -51,7 +51,7 @@ const LibraryPage = () => {
           </Form.Select>
         </Col>
         <Col xs={6} lg={2}>
-          <Form.Select className="rounded-pill py-2 border-light shadow-sm">
+          <Form.Select className="rounded-pill py-2 select shadow-sm">
             <option>All</option>
             <option>In Stock</option>
             <option>Out of Stock</option>
@@ -61,7 +61,7 @@ const LibraryPage = () => {
 
       {/* Library Table Card */}
       <Card className="library-card border-0 shadow-sm overflow-hidden">
-        <div className="table-responsive">
+        <div className="table-responsive no-scrollbar">
           <Table hover className="align-middle mb-0 custom-table">
             <thead>
               <tr>
@@ -78,7 +78,7 @@ const LibraryPage = () => {
                 <tr key={book.id}>
                   <td className="ps-4 py-4">
                     <div className="fw-bold title-text">{book.title}</div>
-                    <div className="text-muted small">{book.author}</div>
+                    <div className="subtitle-text small">{book.author}</div>
                   </td>
                   <td>
                     <Badge className="category-badge">{book.category}</Badge>

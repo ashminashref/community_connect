@@ -47,7 +47,7 @@ const TeamsPage = () => {
           </div>
           <div>
             <h4 className="fw-bold mb-0 page-title">Teams</h4>
-            <small className="text-muted">3 teams created</small>
+            <small className="subtitle-text">3 teams created</small>
           </div>
         </div>
         <Button variant="dark" className="btn-custom py-2 px-4 d-flex align-items-center gap-2">
@@ -67,18 +67,18 @@ const TeamsPage = () => {
                     {team.status}
                   </Badge>
                 </div>
-                <p className="text-muted small mb-3">{team.category}</p>
+                <p className=" small mb-3">{team.category}</p>
                 
-                <Card.Text className="text-secondary small mb-4 flex-grow-1">
+                <Card.Text className="description small mb-4 flex-grow-1">
                   {team.description}
                 </Card.Text>
 
-                <div className="d-flex align-items-center gap-2 text-muted small mb-3">
+                <div className="d-flex align-items-center gap-2 date small mb-3">
                   <Calendar size={14} /> {team.date}
                 </div>
 
                 <div className="mb-4">
-                  <div className="text-muted small mb-2">{team.membersCount} Members</div>
+                  <div className="members-counr small mb-2">{team.membersCount} Members</div>
                   <div className="avatar-group d-flex">
                     {team.initials.map((init, idx) => (
                       <div key={idx} className="avatar-circle">{init}</div>
@@ -87,7 +87,7 @@ const TeamsPage = () => {
                 </div>
 
                 <div className="d-flex gap-2 mt-auto">
-                  <Button variant="outline-dark" className="btn-pill flex-grow-1 d-flex align-items-center justify-content-center gap-2">
+                  <Button variant=""  className="btn-pill edit-btn flex-grow-1 d-flex align-items-center justify-content-center gap-2">
                     <Edit2 size={14} /> Edit
                   </Button>
                   <Button variant="outline-danger" className="rounded-circle p-2 d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>

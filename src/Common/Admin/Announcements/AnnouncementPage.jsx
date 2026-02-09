@@ -41,7 +41,7 @@ const AnnouncementsPage = () => {
           </div>
           <div>
             <h4 className="fw-bold mb-0 page-title">Announcements</h4>
-            <small className="text-muted">3 total announcements text Coming repad.05</small>
+            <small className="sub-title">3 total announcements text Coming repad.05</small>
           </div>
         </div>
         <Button variant="dark" className="btn-custom py-2 px-4 d-flex align-items-center justify-content-center gap-2">
@@ -51,8 +51,8 @@ const AnnouncementsPage = () => {
 
       {/* Table Card */}
       <Card className="announcement-card border-0 shadow-sm overflow-hidden">
-        <div className="table-responsive">
-          <Table hover className="align-middle mb-0 custom-table">
+        <div className="table-responsive no-scrollbar">
+          <Table hover className="align-middle  mb-0 custom-table">
             <thead>
               <tr>
                 <th className="ps-4 py-3">Title</th>
@@ -66,8 +66,8 @@ const AnnouncementsPage = () => {
               {announcementsData.map((item) => (
                 <tr key={item.id}>
                   <td className="ps-4 py-4">
-                    <div className="fw-bold mb-0 title-text">{item.title}</div>
-                    <div className="text-muted small subtitle-text">{item.subtitle}</div>
+                    <div className=" mb-0 ">{item.title}</div>
+                    <div className="small subtitle-text">{item.subtitle}</div>
                   </td>
                   <td>
                     <Badge className={`priority-badge ${item.priority}`}>
