@@ -1,0 +1,31 @@
+.kpi-card, .chart-card {
+  background-color: var(--bg-card, #ffffff);
+  border-radius: 24px;
+}
+
+.kpi-icon {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 12px;
+  color: #888;
+}
+
+.chart-title {
+  font-family: serif;
+  color: var(--text-main);
+}
+
+.stats-up {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.stats-down {
+  color: #dc3545;
+  font-weight: 500;
+}
+
+/* Matching the serif font from your screenshot */
+h3, h5 {
+  font-family: 'Playfair Display', serif;
+}

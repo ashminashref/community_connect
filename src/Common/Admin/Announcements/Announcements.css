@@ -1,0 +1,69 @@
+.announcement-card {
+  background-color: var(--bg-card, #ffffff); /* Fallback to white */
+  border-radius: 20px;
+}
+
+.page-title {
+  color: var(--text-main, #1a1a1a);
+  font-family: serif;
+}
+
+.announcement-icon-wrapper {
+  background-color: var(--pill-bg, #f1eee4);
+  padding: 12px;
+  border-radius: 12px;
+  color: var(--text-main);
+}
+
+.custom-table thead th {
+  background-color: transparent;
+  color: #888;
+  font-weight: 500;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border-color, #eee);
+}
+
+.custom-table tbody td {
+  border-bottom: 1px solid var(--border-color, #f8f8f8);
+}
+
+.title-text { color: var(--text-main); }
+
+/* Badges styling */
+.priority-badge {
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.priority-badge.high { background-color: #fceaea; color: #d9534f; }
+.priority-badge.medium { background-color: #fdf5e6; color: #8a6d3b; }
+.priority-badge.low { background-color: #f0f0f0; color: #777; }
+
+.status-badge {
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+}
+
+.status-badge.published { background-color: #1b2e25; color: #fff; }
+.status-badge.draft { background-color: #e0e0e0; color: #555; }
+
+.btn-custom {
+  border-radius: 50px;
+  font-weight: 500;
+}
+
+.action-btn:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
+
+/* For small screens, adjust padding */
+@media (max-width: 768px) {
+  .custom-table th, .custom-table td {
+    white-space: nowrap;
+  }
+}

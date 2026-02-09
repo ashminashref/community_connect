@@ -1,0 +1,28 @@
+/* AdminLayout.css */
+.admin-bg {
+  background-color:var(--bg-color) !important; /* The cream/off-white background */
+  min-height: 100vh;
+}
+
+.dashboard-title {
+  font-family: 'Playfair Display', serif; /* Or any serif font */
+  color: var(--text-primary-color);
+}
+
+.admin-navbar .nav-link {
+  color:var(--text-secondary-color);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.admin-navbar .nav-link.active {
+  background-color: #f1eee4 !important; /* Soft tan color */
+  color: var(--text-secondary-color);
+  font-weight: 500;
+  
+}
+
+.admin-navbar .nav-link:hover:not(.active) {
+  background-color:var(--card-bg-secondary);
+}

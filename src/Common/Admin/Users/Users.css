@@ -1,0 +1,63 @@
+.user-card {
+  background-color: var(--bg-card, #ffffff);
+  border-radius: 24px;
+}
+
+.user-icon-wrapper {
+  background-color: var(--pill-bg, #f1eee4);
+  padding: 10px;
+  border-radius: 12px;
+  color: var(--text-main);
+}
+
+.search-input-group .form-control:focus {
+  box-shadow: none;
+  border-color: #dee2e6;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #f8f9fa;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Role Badges */
+.role-badge {
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.role-badge.admin { background-color: #e9ecef; color: #495057; }
+.role-badge.member { background-color: #f1f3f5; color: #868e96; }
+.role-badge.volunteer { background-color: #fff9db; color: #f08c00; }
+
+/* Status Badge */
+.status-badge-active {
+  background-color: #1b2e25;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+}
+
+.custom-table thead th {
+  color: #888;
+  font-weight: 500;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.btn-custom {
+  border-radius: 50px;
+}
