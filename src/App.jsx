@@ -24,14 +24,13 @@ import AnalyticsPage from "./Common/Admin/Analytics/AnalyticsPage";
 /* ================= SERVICES ================= */
 import ServicesPage from "./Common/Admin/Services/ServicePage";
 import FoodServicePage from "./Common/Admin/Services/FoodService";
-// ⬆️ make sure FILE NAME = FoodMembersPage.jsx
+import AddFoodService from "./Common/Admin/Services/AddFoodService";
 
 function App() {
   return (
     <ThemeProvider>
       <div className="p-3">
         <Routes>
-
           {/* ========= USER ROUTES ========= */}
           <Route path="/" element={<Home />} />
           <Route path="/notification" element={<Notifications />} />
@@ -44,11 +43,7 @@ function App() {
 
           {/* ========= ADMIN ROUTES ========= */}
           <Route path="/admin" element={<AdminLayout />}>
-
-            {/* Default admin redirect */}
             <Route index element={<Navigate to="announcements" replace />} />
-
-            {/* Admin main pages */}
             <Route path="announcements" element={<AnnouncementsPage />} />
             <Route path="users" element={<UsersPage />} />
             <Route path="payments" element={<AdminPaymentPage />} />
@@ -57,22 +52,16 @@ function App() {
             <Route path="certificates" element={<CertificatesPage />} />
             <Route path="analytics" element={<AnalyticsPage />} />
 
-            {/* ===== SERVICES (CORRECT & FINAL) ===== */}
+            {/* ========= SERVICES (NESTED) ========= */}
             <Route path="services">
               <Route index element={<ServicesPage />} />
-
-              {/* Food Services */}
-              <Route path="foodservices" element={<FoodServicePage />} />
-
-              {/* Food Service Members */}
-             
-
-              {/* Future services (ready) */}
-              {/* <Route path="medical" element={<MedicalServicePage />} /> */}
-              {/* <Route path="education" element={<EducationServicePage />} /> */}
-              {/* <Route path="loan" element={<LoanServicePage />} /> */}
+              
+              {/* Nested under foodservices to match /admin/services/foodservices/add */}
+              <Route path="foodservices">
+                <Route index element={<FoodServicePage />} />
+                <Route path="add" element={<AddFoodService />} />
+              </Route>
             </Route>
-
           </Route>
         </Routes>
       </div>

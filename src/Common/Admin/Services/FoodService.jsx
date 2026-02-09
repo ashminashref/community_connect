@@ -23,15 +23,6 @@ const foodServicesData = [
     members: 40,
     status: "active",
   },
-  {
-    id: 3,
-    eventName: "Orphan Day Lunch",
-    foodName: "Meals & Fruits",
-    providerName: "Fatima Trust",
-    date: "2024-03-05",
-    members: 30,
-    status: "completed",
-  },
 ];
 
 const FoodServicePage = () => {
@@ -48,11 +39,13 @@ const FoodServicePage = () => {
           </small>
         </div>
 
-        {/* ✅ UPDATED: Add Food Service navigation */}
+        {/* ✅ FIX: USE ABSOLUTE PATH */}
         <Button
           variant="dark"
           className="rounded-pill"
-          onClick={() => navigate("addmember")}
+          onClick={() =>
+            navigate("/admin/services/foodservices/add")
+          }
         >
           <Plus size={16} /> Add Food Service
         </Button>
@@ -78,40 +71,27 @@ const FoodServicePage = () => {
               {foodServicesData.map((item) => (
                 <tr key={item.id}>
                   <td className="ps-4 fw-semibold">{item.eventName}</td>
-
-                  <td>
-                    <div className="fw-medium">{item.foodName}</div>
-                  </td>
-
-                  <td>
-                    <div className="fw-medium">{item.providerName}</div>
-                  </td>
-
+                  <td>{item.foodName}</td>
+                  <td>{item.providerName}</td>
                   <td className="text-muted small">{item.date}</td>
-
-                  <td className="fw-medium">{item.members}</td>
+                  <td>{item.members}</td>
 
                   <td>
-                    <Badge
-                      bg="none"
-                      className={`status-pill ${
-                        item.status === "active"
-                          ? "approved"
-                          : "rejected"
-                      }`}
-                    >
+                    <Badge className="status-pill approved">
                       {item.status}
                     </Badge>
                   </td>
 
                   <td className="pe-4 text-end">
-                    {/* ✅ UPDATED: Add Members navigation */}
+                    {/* ✅ Relative path is OK here */}
                     <Button
                       size="sm"
                       variant="outline-dark"
                       className="rounded-pill"
                       onClick={() =>
-                        navigate(`members/${item.id}`)
+                        navigate(
+                          `/admin/services/foodservices/members/${item.id}`
+                        )
                       }
                     >
                       <Users size={14} /> Add Members
