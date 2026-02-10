@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Card, Table, Badge, Form, InputGroup } from 'react-bootstrap';
 import { Plus, Edit2, Trash2, Search, Mail, Phone, User as UserIcon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'; // 1. Import useNavigate
 import './Users.css';
 
 const usersData = [
@@ -37,6 +38,8 @@ const usersData = [
 ];
 
 const UsersPage = () => {
+  const navigate = useNavigate(); // 2. Initialize navigate
+
   return (
     <div className="animate-fade-in">
 
@@ -52,75 +55,88 @@ const UsersPage = () => {
           </div>
         </div>
 
-        <Button variant="dark" className="d-flex align-items-center gap-2">
+        {/* 3. Added onClick to navigate to the 'add' sub-route */}
+        <Button 
+          variant="dark" 
+          className="d-flex align-items-center gap-2 rounded-pill px-4"
+          onClick={() => navigate("add")}
+        >
           <Plus size={18} /> Add User
         </Button>
       </div>
 
       {/* Search */}
-      <InputGroup className="mb-4">
-        <InputGroup.Text>
-          <Search size={18} />
+      <InputGroup className="mb-4 search-input-group">
+        <InputGroup.Text className="bg-white border-end-0">
+          <Search size={18} className="text-muted" />
         </InputGroup.Text>
-        <Form.Control placeholder="Search users..." />
+        <Form.Control 
+          placeholder="Search users by name or email..." 
+          className="border-start-0 ps-0"
+        />
       </InputGroup>
 
       {/* Table */}
-      <Card className="border-0 shadow-sm">
-        <Table hover className="align-middle mb-0">
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Contact</th>
-              <th>Role</th>
-              <th className="text-center">Status</th>
-              <th>Joined</th>
-              <th className="text-end">Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {usersData.map(user => (
-              <tr key={user.id}>
-                <td>
-                  <div className="d-flex align-items-center gap-2">
-                    <div className="user-avatar">{user.initials}</div>
-                    <strong>{user.name}</strong>
-                  </div>
-                </td>
-
-                <td>
-                  <div className="small text-muted"><Mail size={14} /> {user.email}</div>
-                  <div className="small text-muted"><Phone size={14} /> {user.phone}</div>
-                </td>
-
-                <td>
-                  <Badge className={`role-badge ${user.role}`}>
-                    {user.role}
-                  </Badge>
-                </td>
-
-                <td className="text-center">
-                  {/* ✅ FIXED BADGE */}
-                  <Badge bg="none" className="status-badge-active">
-                    {user.status}
-                  </Badge>
-                </td>
-
-                <td className="small text-muted">{user.joined}</td>
-
-                <td className="text-end">
-                  <Button variant="link" className="p-1 text-dark">
-                    <Edit2 size={18} />
-                  </Button>
-                  <Button variant="link" className="p-1 text-danger">
-                    <Trash2 size={18} />
-                  </Button>
-                </td>
+      <Card className="border-0 shadow-sm overflow-hidden" style={{ borderRadius: '15px' }}>
+        <div className="table-responsive">
+          <Table hover className="align-middle mb-0 custom-table">
+            <thead className="bg-light">
+              <tr>
+                <th className="ps-4">User</th>
+                <th>Contact</th>
+                <th>Role</th>
+                <th className="text-center">Status</th>
+                <th>Joined</th>
+                <th className="pe-4 text-end">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+
+            <tbody>
+              {usersData.map(user => (
+                <tr key={user.id}>
+                  <td className="ps-4">
+                    <div className="d-flex align-items-center gap-3">
+                      <div className="user-avatar-circle">{user.initials}</div>
+                      <span className="fw-semibold">{user.name}</span>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div className="small text-muted d-flex align-items-center gap-1">
+                      <Mail size={12} /> {user.email}
+                    </div>
+                    <div className="small text-muted d-flex align-items-center gap-1">
+                      <Phone size={12} /> {user.phone}
+                    </div>
+                  </td>
+
+                  <td>
+                    <Badge className={`role-badge ${user.role} text-capitalize`}>
+                      {user.role}
+                    </Badge>
+                  </td>
+
+                  <td className="text-center">
+                    <Badge bg="none" className={`status-pill ${user.status === 'active' ? 'approved' : 'rejected'}`}>
+                      {user.status}
+                    </Badge>
+                  </td>
+
+                  <td className="small text-muted">{user.joined}</td>
+
+                  <td className="pe-4 text-end">
+                    <Button variant="link" className="p-1 text-dark me-2 action-btn">
+                      <Edit2 size={18} />
+                    </Button>
+                    <Button variant="link" className="p-1 text-danger action-btn">
+                      <Trash2 size={18} />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       </Card>
     </div>
   );

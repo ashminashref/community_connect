@@ -20,11 +20,13 @@ import TeamsPage from "./Common/Admin/Teams/TeamsPage";
 import LibraryPage from "./Common/Admin/Library/LibraryPage";
 import CertificatesPage from "./Common/Admin/Certificates/CertifcatesPage";
 import AnalyticsPage from "./Common/Admin/Analytics/AnalyticsPage";
+import AddUserPage from "./Common/Admin/Users/AddUserPage";
 
 /* ================= SERVICES ================= */
 import ServicesPage from "./Common/Admin/Services/ServicePage";
 import FoodServicePage from "./Common/Admin/Services/FoodService";
 import AddFoodService from "./Common/Admin/Services/AddFoodService";
+import AddTeamModal from "./Common/Admin/Teams/CreateTeam";
 
 function App() {
   return (
@@ -45,18 +47,28 @@ function App() {
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Navigate to="announcements" replace />} />
             <Route path="announcements" element={<AnnouncementsPage />} />
-            <Route path="users" element={<UsersPage />} />
+            
+            {/* Users Management */}
+            <Route path="users">
+              <Route index element={<UsersPage />} />
+              <Route path="add" element={<AddUserPage />} />
+            </Route>
+
             <Route path="payments" element={<AdminPaymentPage />} />
-            <Route path="teams" element={<TeamsPage />} />
+
+            {/* Teams Management */}
+            <Route path="teams">
+              <Route index element={<TeamsPage />} />
+              <Route path="add" element={<AddTeamModal />} /> 
+            </Route>
+
             <Route path="library" element={<LibraryPage />} />
             <Route path="certificates" element={<CertificatesPage />} />
             <Route path="analytics" element={<AnalyticsPage />} />
 
-            {/* ========= SERVICES (NESTED) ========= */}
+            {/* Services Management */}
             <Route path="services">
               <Route index element={<ServicesPage />} />
-              
-              {/* Nested under foodservices to match /admin/services/foodservices/add */}
               <Route path="foodservices">
                 <Route index element={<FoodServicePage />} />
                 <Route path="add" element={<AddFoodService />} />

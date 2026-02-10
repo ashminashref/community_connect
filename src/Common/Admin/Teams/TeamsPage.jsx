@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Card, Button, Badge } from 'react-bootstrap';
 import { Plus, Edit2, Trash2, Calendar, Users } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import './Teams.css';
 
 const teamsData = [
@@ -37,6 +38,8 @@ const teamsData = [
 ];
 
 const TeamsPage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="animate-fade-in">
       {/* Header Section */}
@@ -47,10 +50,16 @@ const TeamsPage = () => {
           </div>
           <div>
             <h4 className="fw-bold mb-0 page-title">Teams</h4>
-            <small className="subtitle-text">3 teams created</small>
+            {/* RESOLVED: Kept the dynamic count and text-muted class */}
+            <small className="text-muted">{teamsData.length} teams created</small>
           </div>
         </div>
-        <Button variant="dark" className="btn-custom py-2 px-4 d-flex align-items-center gap-2">
+        
+        <Button 
+          variant="dark" 
+          className="btn-custom py-2 px-4 d-flex align-items-center gap-2"
+          onClick={() => navigate("add")}
+        >
           <Plus size={18} /> Create Team
         </Button>
       </div>
@@ -87,7 +96,7 @@ const TeamsPage = () => {
                 </div>
 
                 <div className="d-flex gap-2 mt-auto">
-                  <Button variant=""  className="btn-pill edit-btn flex-grow-1 d-flex align-items-center justify-content-center gap-2">
+                  <Button variant="" className="btn-pill edit-btn flex-grow-1 d-flex align-items-center justify-content-center gap-2">
                     <Edit2 size={14} /> Edit
                   </Button>
                   <Button variant="outline-danger" className="rounded-circle p-2 d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>
