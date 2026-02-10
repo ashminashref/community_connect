@@ -30,7 +30,7 @@
   background-color: var(--card-bg-primary) !important;
   color: var(--icon-bg) !important;
   font-weight: 500;
-  border: 1px solid #e4dfd2;
+  border: 1px solid var(--card-border);
 }
 
 /* Hover state */
@@ -39,7 +39,3 @@
   color: var(--text-primary-color);
 }
 
-/* Optional: smoother pills */
-.admin-navbar .nav-link {
-  border-radius: 999px;
-}

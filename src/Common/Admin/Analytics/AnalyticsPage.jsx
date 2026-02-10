@@ -33,8 +33,8 @@ const AnalyticsPage = () => {
           <Card className="kpi-card border-0 shadow-sm p-3">
             <div className="d-flex justify-content-between align-items-start">
               <div>
-                <p className="text-muted small mb-1">Total Revenue</p>
-                <h3 className="fw-bold mb-0">₹3,28,000</h3>
+                <p className="rev-p small mb-1">Total Revenue</p>
+                <h3 className="rev-h3 fw-bold mb-0">₹3,28,000</h3>
                 <span className="stats-up small"><TrendingUp size={14} /> +12.5% vs last month</span>
               </div>
               <div className="kpi-icon"><DollarSign size={20} /></div>
@@ -45,8 +45,8 @@ const AnalyticsPage = () => {
           <Card className="kpi-card border-0 shadow-sm p-3">
             <div className="d-flex justify-content-between align-items-start">
               <div>
-                <p className="text-muted small mb-1">Active Members</p>
-                <h3 className="fw-bold mb-0">216</h3>
+                <p className="rev-p small mb-1">Active Members</p>
+                <h3 className="rev-h3 fw-bold mb-0">216</h3>
                 <span className="stats-up small"><TrendingUp size={14} /> +8 vs last month</span>
               </div>
               <div className="kpi-icon"><Users size={20} /></div>
@@ -57,8 +57,8 @@ const AnalyticsPage = () => {
           <Card className="kpi-card border-0 shadow-sm p-3">
             <div className="d-flex justify-content-between align-items-start">
               <div>
-                <p className="text-muted small mb-1">Avg. Monthly</p>
-                <h3 className="fw-bold mb-0">₹54,667</h3>
+                <p className="rev-p small mb-1">Avg. Monthly</p>
+                <h3 className="rev-h3 fw-bold mb-0">₹54,667</h3>
                 <span className="stats-down small"><TrendingDown size={14} /> -2.3% vs last month</span>
               </div>
               <div className="kpi-icon"><Calendar size={20} /></div>
@@ -80,7 +80,7 @@ const AnalyticsPage = () => {
                   <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#888', fontSize: 12}} />
                   <YAxis axisLine={false} tickLine={false} tick={{fill: '#888', fontSize: 12}} tickFormatter={(val) => `₹${val/1000}k`} />
                   <Tooltip cursor={{fill: '#fcfbf7'}} contentStyle={{borderRadius: '10px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)'}} />
-                  <Bar dataKey="revenue" fill="#1b2e25" radius={[4, 4, 0, 0]} barSize={40} />
+                  <Bar dataKey="revenue" fill="#1e533a" radius={[4, 4, 0, 0]} barSize={40} />
                   <Bar dataKey="expenses" fill="#c4a45a" radius={[4, 4, 0, 0]} barSize={40} />
                 </BarChart>
               </ResponsiveContainer>

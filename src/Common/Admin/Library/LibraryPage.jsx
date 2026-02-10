@@ -33,17 +33,17 @@ const LibraryPage = () => {
       <Row className="mb-4 g-3">
         <Col lg={7}>
           <InputGroup className="search-input-group">
-            <InputGroup.Text className="border-end-0 search-icon-box rounded-start-pill">
-              <Search size={18} className="search-icon" />
+            <InputGroup.Text className="border-end-0 search-icon-box border-0 rounded-start-pill">
+              <Search size={18} className="search-icon " />
             </InputGroup.Text>
             <Form.Control 
               placeholder="Search books by title or author..." 
-              className="border-start-0 input-box rounded-end-pill py-2" 
+              className="border-start-0 border-0 input-box rounded-end-pill py-2" 
             />
           </InputGroup>
         </Col>
         <Col xs={6} lg={3}>
-          <Form.Select className="rounded-pill py-2 select shadow-sm">
+          <Form.Select className="rounded-pill py-2 select  border-0 shadow-sm">
             <option>All Categories</option>
             <option>Hadith</option>
             <option>Tafsir</option>
@@ -51,7 +51,7 @@ const LibraryPage = () => {
           </Form.Select>
         </Col>
         <Col xs={6} lg={2}>
-          <Form.Select className="rounded-pill py-2 select shadow-sm">
+          <Form.Select className="rounded-pill py-2 select border-0 shadow-sm">
             <option>All</option>
             <option>In Stock</option>
             <option>Out of Stock</option>
@@ -83,7 +83,7 @@ const LibraryPage = () => {
                   <td>
                     <Badge className="category-badge">{book.category}</Badge>
                   </td>
-                  <td className="fw-medium">{book.quantity}</td>
+                  <td className="fw-medium text-center">{book.quantity}</td>
                   <td>
                     <Badge className={`status-pill ${book.status === 'In Stock' ? 'instock' : 'outofstock'}`}>
                       <span className="d-flex align-items-center gap-1">
@@ -92,10 +92,10 @@ const LibraryPage = () => {
                       </span>
                     </Badge>
                   </td>
-                  <td className="text-muted small">{book.date}</td>
+                  <td className="date small">{book.date}</td>
                   <td className="pe-4 text-end">
                     <div className="d-flex justify-content-end gap-2">
-                      <Button variant="link" className="p-1 text-dark action-btn">
+                      <Button variant="link" className="p-1  action-btn">
                         <Edit2 size={18} />
                       </Button>
                       <Button variant="link" className="p-1 text-danger action-btn">

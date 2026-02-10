@@ -51,7 +51,7 @@ const UsersPage = () => {
           </div>
           <div>
             <h4 className="fw-bold mb-0">Users</h4>
-            <small className="text-muted">4 registered users</small>
+            <small className="subtitle-text">4 registered users</small>
           </div>
         </div>
 
@@ -66,21 +66,21 @@ const UsersPage = () => {
       </div>
 
       {/* Search */}
-      <InputGroup className="mb-4 search-input-group">
-        <InputGroup.Text className="bg-white border-end-0">
-          <Search size={18} className="text-muted" />
+      <InputGroup className="mb-4 search-input-group ">
+        <InputGroup.Text className="input border-0  border-end-0 ">
+          <Search size={18} className="" />
         </InputGroup.Text>
         <Form.Control 
           placeholder="Search users by name or email..." 
-          className="border-start-0 ps-0"
+          className="border-start-0 ps-0 border-0 input"
         />
       </InputGroup>
 
       {/* Table */}
       <Card className="border-0 shadow-sm overflow-hidden" style={{ borderRadius: '15px' }}>
-        <div className="table-responsive">
+        <div className="table-responsive no-scrollbar">
           <Table hover className="align-middle mb-0 custom-table">
-            <thead className="bg-light">
+            <thead className="">
               <tr>
                 <th className="ps-4">User</th>
                 <th>Contact</th>
@@ -102,10 +102,10 @@ const UsersPage = () => {
                   </td>
 
                   <td>
-                    <div className="small text-muted d-flex align-items-center gap-1">
+                    <div className="small  d-flex align-items-center gap-1">
                       <Mail size={12} /> {user.email}
                     </div>
-                    <div className="small text-muted d-flex align-items-center gap-1">
+                    <div className="small subtitle-text d-flex align-items-center gap-1">
                       <Phone size={12} /> {user.phone}
                     </div>
                   </td>
@@ -122,10 +122,10 @@ const UsersPage = () => {
                     </Badge>
                   </td>
 
-                  <td className="small text-muted">{user.joined}</td>
+                  <td className="small ">{user.joined}</td>
 
                   <td className="pe-4 text-end">
-                    <Button variant="link" className="p-1 text-dark me-2 action-btn">
+                    <Button variant="link" className="p-1  me-2 action-btn">
                       <Edit2 size={18} />
                     </Button>
                     <Button variant="link" className="p-1 text-danger action-btn">

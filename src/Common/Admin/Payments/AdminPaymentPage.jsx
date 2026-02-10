@@ -31,7 +31,7 @@ const AdminPaymentPage = () => {
           </div>
           <div>
             <h4 className="fw-bold mb-0 page-title">Payments</h4>
-            <small className="text-muted">Total collected: <strong>₹9,000</strong></small>
+            <small className="subtitle-text">Total collected: <strong>₹9,000</strong></small>
           </div>
         </div>
         <Button variant="outline-dark" className="btn-custom py-2 px-4 d-flex align-items-center gap-2">
@@ -43,14 +43,14 @@ const AdminPaymentPage = () => {
       <Row className="mb-4 g-3">
         <Col lg={6}>
           <InputGroup className="search-input-group">
-            <InputGroup.Text className="bg-white border-end-0 rounded-start-pill">
-              <Search size={18} className="text-muted" />
+            <InputGroup.Text className=" border-end-0 input border-0 rounded-start-pill">
+              <Search size={18} className="" />
             </InputGroup.Text>
-            <Form.Control placeholder="Search by name or reference..." className="border-start-0 rounded-end-pill py-2" />
+            <Form.Control placeholder="Search by name or reference..." className="border-start-0 rounded-end-pill py-2 border-0 input" />
           </InputGroup>
         </Col>
         <Col xs={6} lg={3}>
-          <Form.Select className="rounded-pill py-2">
+          <Form.Select className="rounded-pill input border-0 py-2">
             <option>All Status</option>
             <option>Completed</option>
             <option>Pending</option>
@@ -58,7 +58,7 @@ const AdminPaymentPage = () => {
           </Form.Select>
         </Col>
         <Col xs={6} lg={3}>
-          <Form.Select className="rounded-pill py-2">
+          <Form.Select className="rounded-pill border-0 input py-2">
             <option>All Types</option>
             <option>Contribution</option>
             <option>Madrassa</option>
@@ -69,7 +69,7 @@ const AdminPaymentPage = () => {
 
       {/* Table Card */}
       <Card className="payment-card border-0 shadow-sm overflow-hidden">
-        <div className="table-responsive">
+        <div className="table-responsive no-scrollbar">
           <Table hover className="align-middle mb-0 custom-table">
             <thead>
               <tr>
@@ -85,12 +85,12 @@ const AdminPaymentPage = () => {
             <tbody>
               {paymentsData.map((item) => (
                 <tr key={item.id}>
-                  <td className="ps-4 py-4 fw-bold title-text">{item.user}</td>
+                  <td className="ps-4 py-4  title-text">{item.user}</td>
                   <td className="fw-bold">{item.amount}</td>
                   <td>
                     <Badge className="type-badge">{item.type}</Badge>
                   </td>
-                  <td className="text-muted small">{item.method}</td>
+                  <td className="subtitle-text small">{item.method}</td>
                   <td>
                     <Badge className={`status-pill ${item.status}`}>
                       <span className="d-flex align-items-center">
@@ -98,8 +98,8 @@ const AdminPaymentPage = () => {
                       </span>
                     </Badge>
                   </td>
-                  <td className="text-muted small font-monospace">{item.reference}</td>
-                  <td className="text-muted small pe-4">{item.date}</td>
+                  <td className=" small font-monospace">{item.reference}</td>
+                  <td className=" small pe-4">{item.date}</td>
                 </tr>
               ))}
             </tbody>

@@ -47,9 +47,8 @@ const ServicesPage = () => {
             <div className="service-icon">{service.icon}</div>
 
             <h6 className="fw-semibold">{service.name}</h6>
-            <p className="text-muted small">{service.desc}</p>
+            <p className="subtitle-text small">{service.desc}</p>
 
-            {/* ✅ FIXED BUTTON */}
             <Button
               size="sm"
               variant="dark"

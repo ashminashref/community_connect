@@ -58,8 +58,9 @@
 }
 .input-box{
   background-color: var(--card-bg-secondary) !important;
-  border: 1px solid var(--card-border) !important;
+  border: none !important;
   color: var(--text-primary-color) !important;
+  outline: none !important;
 }
 .input-box::placeholder{
   color: var(--text-secondary-color) !important;
@@ -73,7 +74,7 @@
 }
 .select{
   background-color: var(--card-bg-secondary) !important;
-  border: 1px solid var(--card-border) !important;
+  border: none !important;
   color: var(--text-secondary-color) !important;
 }
 /* Book title & quantity sizing */
@@ -96,6 +97,7 @@ td.fw-medium {
 .action-btn {
   opacity: 0.8;
   transition: opacity 0.2s ease;
+  color: var(--text-secondary-color) !important;
 }
 
 .action-btn:hover {

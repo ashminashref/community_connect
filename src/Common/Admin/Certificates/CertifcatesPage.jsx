@@ -28,7 +28,7 @@ const CertificatesPage = () => {
 
       {/* Requests Table Card */}
       <Card className="cert-card border-0 shadow-sm overflow-hidden">
-        <div className="table-responsive">
+        <div className="table-responsive no-scrollbar">
           <Table hover className="align-middle mb-0 custom-table">
             <thead>
               <tr>
@@ -46,12 +46,12 @@ const CertificatesPage = () => {
                   <td className="ps-4 py-4 fw-bold small">{req.id}</td>
                   <td>
                     <div className="fw-bold title-text">{req.applicant}</div>
-                    <div className="text-muted smallest">{req.applicantId}</div>
+                    <div className="app-id  smallest">{req.applicantId}</div>
                   </td>
                   <td>
                     <Badge className="cert-type-badge">{req.type}</Badge>
                   </td>
-                  <td className="text-muted small">{req.date}</td>
+                  <td className="date small">{req.date}</td>
                   <td>
                     <Badge className={`status-pill ${req.status}`}>
                       {req.status}
@@ -59,12 +59,12 @@ const CertificatesPage = () => {
                   </td>
                   <td className="text-end pe-4">
                     <div className="d-flex justify-content-end gap-3 align-items-center">
-                      <Button variant="link" className="p-0 text-muted action-icon">
+                      <Button variant="link" className="p-0  action-icon">
                         <Eye size={18} />
                       </Button>
                       {req.status === 'pending' && (
                         <>
-                          <Button variant="link" className="p-0 text-dark action-icon">
+                          <Button variant="link" className="p-0  action-icon">
                             <Check size={18} />
                           </Button>
                           <Button variant="link" className="p-0 text-danger action-icon">

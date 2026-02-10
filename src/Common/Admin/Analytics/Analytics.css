@@ -1,18 +1,21 @@
 .kpi-card, .chart-card {
-  background-color: var(--bg-card, #ffffff);
+  background-color: var(--card-bg-secondary) !important;
   border-radius: 24px;
 }
 
 .kpi-icon {
-  background-color: #f8f9fa;
+  background-color: var(--icon-bg);
   padding: 10px;
   border-radius: 12px;
-  color: #888;
+  color:var(--icon-color);
+}
+.rev-p, .rev-h3{
+  color: var(--text-primary-color) ;
 }
 
 .chart-title {
   font-family: serif;
-  color: var(--text-main);
+  color: var(--text-primary-color) !important;
 }
 
 .stats-up {

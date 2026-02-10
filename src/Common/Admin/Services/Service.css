@@ -1,15 +1,4 @@
-/* Page background handled by admin layout */
-:root {
-  --bg-color: #f8f9fa;          /* off-white background */
-  --card-bg: #ffffff;          /* pure white cards */
-  --border-color: #e5e5e5;
 
-  --text-primary: #111111;      /* near black */
-  --text-secondary: #555555;    /* muted gray */
-
-  --accent-black: #000000;
-  --accent-gray: #f1f1f1;
-}
 
 /* Service cards grid */
 .service-grid {
@@ -20,11 +9,11 @@
 
 /* Service card */
 .service-box {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  background-color: var(--card-bg-secondary) !important;
+  border: 1px solid var(--card-border) !important;
   border-radius: 20px;
   padding: 20px;
-
+color: var(--text-primary-color) !important;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -35,13 +24,13 @@
 
 .service-box:hover {
   transform: translateY(-4px);
-  border-color: var(--accent-black);
+  border-color: var(--card-bg-primary) !important;
 }
 
 /* Icon */
 .service-icon {
-  background-color: var(--accent-gray);
-  color: var(--accent-black);
+  background-color: var(--icon-bg);
+  color: var(--icon-color);
   padding: 12px;
   border-radius: 12px;
   width: fit-content;
@@ -49,13 +38,12 @@
 
 /* Manage button (Services page only) */
 .service-box .btn {
-  background-color: #000000 !important;
-  color: #ffffff !important;
+  background-color:var(--btn-pay) !important;
+  color: var(--icon-bg);
   border: none;
 }
 
 .service-box .btn:hover {
-  background-color: #222222 !important;
   color: #ffffff !important;
 }
 

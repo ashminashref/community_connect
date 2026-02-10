@@ -1,15 +1,14 @@
 /* Card */
 .cert-card {
-  background-color: var(--bg-card, #ffffff);
   border-radius: 24px;
 }
 
 /* Icon */
 .cert-icon-wrapper {
-  background-color: var(--pill-bg, #f1eee4);
+  background-color: var(--icon-bg);
   padding: 10px;
   border-radius: 12px;
-  color: #1b2e25;
+  color: var(--icon-color);
 }
 
 /* Small text */
@@ -20,8 +19,8 @@
 /* Category/Type Badges */
 .cert-type-badge {
   background-color: transparent;
-  color: #444;
-  border: 1px solid #ddd;
+  color: var(--text-primary-color) !important;
+  border: 1px solid var(--card-border);
   font-weight: 500;
   font-size: 12px;
   border-radius: 999px;
@@ -42,7 +41,7 @@
   justify-content: center;
   line-height: 1;
 
-  background-color: #ffffff !important;
+  background-color:var(--card-bg-primary);
 }
 
 /* Status colors */
@@ -66,15 +65,20 @@
   color:var(--text-primary-color);
   font-size: 0.8rem;
   background-color: var(--card-bg-primary);
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--card-border);
 }
 
 /* Action icons */
 .action-icon {
   transition: all 0.2s ease;
+  color: var(--text-secondary-color) !important;
 }
 
 .action-icon:hover {
   opacity: 0.7;
   transform: scale(1.1);
+}
+
+.date, .app-id{
+  color: var(--text-secondary-color) !important;
 }
