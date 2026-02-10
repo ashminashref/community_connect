@@ -1,63 +1,88 @@
-/* Container Animation */
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-in-out;
+/* Page wrapper */
+.add-user-page {
+  padding: 2rem;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Center container */
+.add-user-container {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* Card Styling to match the screenshot */
-.card {
-  border-radius: 16px !important;
-  border: 1px solid #f0f0f0 !important;
-  background-color: #ffffff;
+/* Header */
+.add-user-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.25rem;
 }
 
-/* Customizing Input Fields */
-.form-label {
+/* Back button */
+.back-btn {
+  padding: 0;
+  color: #1a2e1a;
+  text-decoration: none;
+}
+
+.back-btn:hover {
+  color: #d4af37 !important;
+}
+
+/* Title */
+.add-user-title {
+  margin: 0;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* Card */
+.add-user-card.card {
+  border-radius: 16px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Labels */
+.add-user-page .form-label {
   font-size: 0.9rem;
   color: #333;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-.form-control, .form-select {
-  border-radius: 10px !important;
-  border: 1.5px solid #e0e0e0 !important;
-  padding: 10px 15px;
+/* Inputs */
+.add-user-page .form-control,
+.add-user-page .form-select {
+  border-radius: 10px;
+  border: 1.5px solid #e0e0e0;
+  padding: 10px 14px;
   font-size: 0.95rem;
   transition: all 0.2s ease-in-out;
 }
 
-/* The gold-ish focus ring from your screenshot */
-.form-control:focus, .form-select:focus {
-  border-color: #d4af37 !important; /* Gold/Bronze accent */
-  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.15) !important;
+/* Focus state */
+.add-user-page .form-control:focus,
+.add-user-page .form-select:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.15);
   outline: none;
 }
 
-/* Dark Green Submit Button */
-.btn-dark {
-  background-color: #1a2e1a !important; /* Deep forest green */
-  border: none !important;
-  border-radius: 12px !important;
-  padding: 12px !important;
-  transition: transform 0.2s, background-color 0.2s;
+/* Submit button */
+.add-user-btn {
+  background-color: #1a2e1a !important;
+  border-radius: 12px;
+  padding: 12px;
+  border: none;
+  font-weight: 600;
+  color: #fff;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.btn-dark:hover {
-  background-color: #243f24 !important;
+.add-user-btn:hover {
+  background-color: #243f24;
   transform: translateY(-1px);
 }
 
-.btn-dark:active {
+.add-user-btn:active {
   transform: translateY(0);
-}
-
-/* Back button hover effect */
-.btn-link:hover {
-  color: #d4af37 !important;
-  background-color: rgba(0,0,0,0.05);
-  border-radius: 50%;
 }

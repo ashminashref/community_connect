@@ -55,6 +55,7 @@
 }
 .edit-btn{
   background-color: var(--btn-pay) !important;
+  color: white !important;
 }
 
 .avatar-circle:first-child {

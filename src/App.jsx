@@ -26,7 +26,8 @@ import AddUserPage from "./Common/Admin/Users/AddUserPage";
 import ServicesPage from "./Common/Admin/Services/ServicePage";
 import FoodServicePage from "./Common/Admin/Services/FoodService";
 import AddFoodService from "./Common/Admin/Services/AddFoodService";
-import AddTeamModal from "./Common/Admin/Teams/CreateTeam";
+import LoanAdminDashboard from "./Common/Admin/Services/PersonalLoan";
+import EducationService from "./Common/Admin/Services/EducationalService";
 
 function App() {
   return (
@@ -46,33 +47,33 @@ function App() {
           {/* ========= ADMIN ROUTES ========= */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Navigate to="announcements" replace />} />
+
             <Route path="announcements" element={<AnnouncementsPage />} />
-            
-            {/* Users Management */}
+
+            {/* Users */}
             <Route path="users">
               <Route index element={<UsersPage />} />
               <Route path="add" element={<AddUserPage />} />
             </Route>
 
             <Route path="payments" element={<AdminPaymentPage />} />
-
-            {/* Teams Management */}
-            <Route path="teams">
-              <Route index element={<TeamsPage />} />
-              <Route path="add" element={<AddTeamModal />} /> 
-            </Route>
-
+            <Route path="teams" element={<TeamsPage />} />
             <Route path="library" element={<LibraryPage />} />
             <Route path="certificates" element={<CertificatesPage />} />
             <Route path="analytics" element={<AnalyticsPage />} />
 
-            {/* Services Management */}
+            {/* ===== SERVICES (FIXED) ===== */}
             <Route path="services">
               <Route index element={<ServicesPage />} />
+
               <Route path="foodservices">
                 <Route index element={<FoodServicePage />} />
                 <Route path="add" element={<AddFoodService />} />
               </Route>
+
+              {/* ✅ Personal Loan is a SIBLING */}
+              <Route path="loan" element={<LoanAdminDashboard />} />
+              <Route path="education" element={<EducationService/>}/>
             </Route>
           </Route>
         </Routes>
