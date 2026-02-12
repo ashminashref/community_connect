@@ -12,13 +12,13 @@
 }
 
 .custom-input:focus {
-  border-color: #c5a059 !important; /* Gold border from your screenshot */
+  border-color: #c5a059 !important;
   box-shadow: none !important;
   background-color: #fff !important;
 }
 
 .custom-submit-btn {
-  background-color: #1b2e1b !important; /* Dark green from your screenshot */
+  background-color: #1b2e1b !important;
   border: none !important;
   border-radius: 12px !important;
   font-weight: 600 !important;

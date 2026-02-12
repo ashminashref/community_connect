@@ -20,13 +20,11 @@
 /* Back button */
 .back-btn {
   padding: 0;
-  color: #1a2e1a;
+  color: #1a2e1a !important;
   text-decoration: none;
 }
 
-.back-btn:hover {
-  color: #d4af37 !important;
-}
+
 
 /* Title */
 .add-user-title {
@@ -79,7 +77,7 @@
 }
 
 .add-user-btn:hover {
-  background-color: #243f24;
+  background-color: #243f24 !important;
   transform: translateY(-1px);
 }
 

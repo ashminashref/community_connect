@@ -114,7 +114,7 @@ const AddUserPage = () => {
                 </Col>
               </Row>
 
-              <Button type="submit" className="btn-dark w-100">
+              <Button type="submit" className="add-user-btn w-100">
                 Add User
               </Button>
             </Form>

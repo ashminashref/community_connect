@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Button, Form } from "react-bootstrap";
 import { ArrowLeft, Save } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import "./FoodService.css";
+import "./AddFoodServvice.css";
 
 const AddFoodService = () => {
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const AddFoodService = () => {
           className="rounded-pill"
           onClick={() => navigate(-1)}
         >
-          <ArrowLeft size={16} /> Back
+          <ArrowLeft size={16} /> 
         </Button>
 
         <h4 className="fw-bold mb-0">Add Food Service</h4>

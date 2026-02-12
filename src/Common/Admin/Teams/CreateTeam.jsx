@@ -1,66 +1,69 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
-import { X, UserPlus, Trash2 } from 'lucide-react';
+import { Button, Form, Row, Col, Card } from 'react-bootstrap';
+import { UserPlus, Trash2, ArrowLeft, Users } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import '../Teams/CreateTeam.css';
 
-const AddTeamModal = ({ show, onHide }) => {
+const AddTeamPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     teamName: '',
     occasion: 'Eid Celebrations',
     description: '',
     date: '',
     status: 'Upcoming',
-    members: [{ name: '', role: '' }]
+    members: [{ name: '', role: 'Member' }] // Default role set to Member
   });
 
-  // Handle normal input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle member change
   const handleMemberChange = (index, field, value) => {
     const members = [...formData.members];
     members[index][field] = value;
     setFormData({ ...formData, members });
   };
 
-  // Add new member
   const addMemberField = () => {
     setFormData({
       ...formData,
-      members: [...formData.members, { name: '', role: '' }]
+      members: [...formData.members, { name: '', role: 'Member' }]
     });
   };
 
-  // Remove member
   const removeMember = (index) => {
     const members = formData.members.filter((_, i) => i !== index);
     setFormData({ ...formData, members });
   };
 
-  // Submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Team Data:', formData);
-
-    // TODO: send data to backend (axios/fetch)
-
-    onHide(); // close modal
+    console.log('Final Team Data:', formData);
+    // Logic to save data to backend would go here
+    navigate('/admin/teams'); 
   };
 
   return (
-    <Modal show={show} onHide={onHide} centered size="lg" contentClassName="custom-modal">
-      <Modal.Header className="border-0 pb-0">
-        <Modal.Title className="fw-bold fs-5">Create New Team</Modal.Title>
-        <Button variant="link" onClick={onHide} className="ms-auto text-dark p-0">
-          <X size={20} />
+    <div className="animate-fade-in container-fluid pb-5">
+      {/* Header */}
+      <div className="mb-4">
+        <Button 
+          variant="link" 
+          className="text-dark p-0 d-flex align-items-center gap-2 mb-3 text-decoration-none"
+          onClick={() => navigate('/admin/teams')}
+        >
+          <ArrowLeft size={20} /> Back to Teams
         </Button>
-      </Modal.Header>
+        <h4 className="fw-bold">Create New Team</h4>
+        <p className="text-muted small">Fill in the details below to organize a new volunteer group.</p>
+      </div>
 
-      <Modal.Body className="pt-4">
+      <Card className="border-0 shadow-sm p-4">
         <Form onSubmit={handleSubmit}>
+          {/* Section 1: Basic Info */}
+          <h6 className="fw-bold mb-3 ">Basic Information</h6>
           <Row className="mb-3">
             <Col md={6}>
               <Form.Group>
@@ -69,7 +72,7 @@ const AddTeamModal = ({ show, onHide }) => {
                   name="teamName"
                   value={formData.teamName}
                   onChange={handleChange}
-                  placeholder="Enter team name"
+                  placeholder="e.g. Ramadan Logistics"
                   className="custom-input"
                   required
                 />
@@ -78,7 +81,7 @@ const AddTeamModal = ({ show, onHide }) => {
 
             <Col md={6}>
               <Form.Group>
-                <Form.Label className="small fw-bold">Occasion</Form.Label>
+                <Form.Label className="small fw-bold">Occasion/Category</Form.Label>
                 <Form.Select
                   name="occasion"
                   value={formData.occasion}
@@ -86,7 +89,7 @@ const AddTeamModal = ({ show, onHide }) => {
                   className="custom-input"
                 >
                   <option>Iftar</option>
-                  <option>Udhiya/Qurbani</option>
+                  <option>Udhiya</option>
                   <option>Cleaning</option>
                   <option>Programming</option>
                   <option>Education</option>
@@ -99,35 +102,37 @@ const AddTeamModal = ({ show, onHide }) => {
             </Col>
           </Row>
 
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-4">
             <Form.Label className="small fw-bold">Description</Form.Label>
             <Form.Control
               as="textarea"
-              rows={3}
+              rows={2}
               name="description"
               value={formData.description}
               onChange={handleChange}
+              placeholder="Briefly describe the team's purpose..."
               className="custom-input"
             />
           </Form.Group>
 
-          <Row className="mb-3">
+          <Row className="mb-4">
             <Col md={6}>
               <Form.Group>
-                <Form.Label className="small fw-bold">Date</Form.Label>
+                <Form.Label className="small fw-bold">Target Date</Form.Label>
                 <Form.Control
                   type="date"
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
                   className="custom-input"
+                  required
                 />
               </Form.Group>
             </Col>
 
             <Col md={6}>
               <Form.Group>
-                <Form.Label className="small fw-bold">Status</Form.Label>
+                <Form.Label className="small fw-bold">Initial Status</Form.Label>
                 <Form.Select
                   name="status"
                   value={formData.status}
@@ -142,45 +147,85 @@ const AddTeamModal = ({ show, onHide }) => {
             </Col>
           </Row>
 
-          <Form.Label className="small fw-bold">Team Members</Form.Label>
-          {formData.members.map((member, index) => (
-            <Row key={index} className="mb-2 align-items-center">
-              <Col md={5}>
-                <Form.Control
-                  placeholder="Member name"
-                  value={member.name}
-                  onChange={(e) => handleMemberChange(index, 'name', e.target.value)}
-                  className="custom-input"
-                />
-              </Col>
-              <Col md={4}>
-                <Form.Control
-                  placeholder="Role"
-                  value={member.role}
-                  onChange={(e) => handleMemberChange(index, 'role', e.target.value)}
-                  className="custom-input"
-                />
-              </Col>
-              <Col md={3} className="d-flex gap-2">
-                <Button variant="outline-dark" onClick={addMemberField}>
-                  <UserPlus size={16} />
-                </Button>
-                {formData.members.length > 1 && (
-                  <Button variant="outline-danger" onClick={() => removeMember(index)}>
-                    <Trash2 size={16} />
-                  </Button>
-                )}
-              </Col>
-            </Row>
-          ))}
+          <hr className="my-4" />
 
-          <Button type="submit" variant="dark" className="w-100 mt-4 py-2">
-            Create Team
-          </Button>
+          {/* Section 2: Members List */}
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <h6 className="fw-bold mb-0  d-flex align-items-center gap-2">
+              <Users size={18} /> Team Members
+            </h6>
+            <Button 
+              variant="dark" 
+              size="sm" 
+              onClick={addMemberField}
+              className="d-flex align-items-center gap-2"
+            >
+              <UserPlus size={16} /> Add Member
+            </Button>
+          </div>
+
+          <div className="members-section p-3 rounded bg-light border">
+            {formData.members.map((member, index) => (
+              <Row key={index} className="mb-3 align-items-end">
+                <Col md={6}>
+                  <Form.Group>
+                    <Form.Label className="extra-small fw-bold text-muted mb-1">Member Name</Form.Label>
+                    <Form.Control
+                      placeholder="Enter full name"
+                      value={member.name}
+                      onChange={(e) => handleMemberChange(index, 'name', e.target.value)}
+                      className="custom-input"
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+                <Col md={4}>
+                  <Form.Group>
+                    <Form.Label className="extra-small fw-bold text-muted mb-1">Role</Form.Label>
+                    <Form.Select
+                      value={member.role}
+                      onChange={(e) => handleMemberChange(index, 'role', e.target.value)}
+                      className="custom-input"
+                    >
+                      <option value="Lead">Team Lead</option>
+                      <option value="Coordinator">Coordinator</option>
+                      <option value="Volunteer">Volunteer</option>
+                      <option value="Member">Member</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+                <Col md={2} className="text-end">
+                  {formData.members.length > 1 && (
+                    <Button 
+                      variant="outline-danger" 
+                      onClick={() => removeMember(index)}
+                      className="w-100 py-2 d-flex align-items-center justify-content-center"
+                    >
+                      <Trash2 size={18} />
+                    </Button>
+                  )}
+                </Col>
+              </Row>
+            ))}
+          </div>
+
+          {/* Action Buttons */}
+          <div className="d-flex gap-3 mt-5">
+             <Button 
+                variant="outline-secondary" 
+                className="w-50 py-2 fw-bold" 
+                onClick={() => navigate('/admin/teams')}
+             >
+              Cancel
+            </Button>
+            <Button type="submit" variant="dark" className="w-50 py-2 fw-bold">
+              Confirm & Create Team
+            </Button>
+          </div>
         </Form>
-      </Modal.Body>
-    </Modal>
+      </Card>
+    </div>
   );
 };
 
-export default AddTeamModal;
+export default AddTeamPage;

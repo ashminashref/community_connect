@@ -50,6 +50,7 @@
 
 .btn-custom {
   border-radius: 50px;
+  color: white !important;
 }
 .input{
   background-color: var(--card-bg-secondary) !important;

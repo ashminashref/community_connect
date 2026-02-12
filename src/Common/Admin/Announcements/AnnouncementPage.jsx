@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Card, Table, Badge } from 'react-bootstrap';
 import { Plus, Edit2, Trash2, Calendar, Bell } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Announcements.css';
 
 const announcementsData = [
@@ -31,6 +32,8 @@ const announcementsData = [
 ];
 
 const AnnouncementsPage = () => {
+  const navigate = useNavigate(); // Initialize navigation
+
   return (
     <div className="animate-fade-in">
       {/* Header Section */}
@@ -41,10 +44,16 @@ const AnnouncementsPage = () => {
           </div>
           <div>
             <h4 className="fw-bold mb-0 page-title">Announcements</h4>
-            <small className="sub-title">3 total announcements text Coming repad.05</small>
+            <small className="sub-title">{announcementsData.length} total announcements</small>
           </div>
         </div>
-        <Button variant="dark" className="btn-custom py-2 px-4 d-flex align-items-center justify-content-center gap-2">
+        
+        {/* UPDATED: Navigates to the /add route */}
+        <Button 
+          variant="dark" 
+          className="btn-custom py-2 px-4 d-flex align-items-center justify-content-center gap-2"
+          onClick={() => navigate("add")}
+        >
           <Plus size={18} /> New Announcement
         </Button>
       </div>
@@ -52,7 +61,7 @@ const AnnouncementsPage = () => {
       {/* Table Card */}
       <Card className="announcement-card border-0 shadow-sm overflow-hidden">
         <div className="table-responsive no-scrollbar">
-          <Table hover className="align-middle  mb-0 custom-table">
+          <Table hover className="align-middle mb-0 custom-table">
             <thead>
               <tr>
                 <th className="ps-4 py-3">Title</th>
@@ -66,8 +75,8 @@ const AnnouncementsPage = () => {
               {announcementsData.map((item) => (
                 <tr key={item.id}>
                   <td className="ps-4 py-4">
-                    <div className=" mb-0 ">{item.title}</div>
-                    <div className="small subtitle-text">{item.subtitle}</div>
+                    <div className="mb-0 fw-bold">{item.title}</div>
+                    <div className="small subtitle-text text-muted">{item.subtitle}</div>
                   </td>
                   <td>
                     <Badge className={`priority-badge ${item.priority}`}>
