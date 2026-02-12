@@ -31,6 +31,7 @@ import AddFoodService from "./Common/Admin/Services/AddFoodService";
 import LoanAdminDashboard from "./Common/Admin/Services/PersonalLoan";
 import EducationService from "./Common/Admin/Services/EducationalService";
 import Medicine from "./Common/Admin/Services/Medicene";
+import FoodServiceUserPage from "./Components/UserServices/UserFoodService";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/typedua" element={<Typedua />} />
           <Route path="/dua" element={<UserDua />} />
           <Route path="/dua/:categoryName" element={<UserDua />} />
+          <Route path='/foodservice' element={<FoodServiceUserPage/>}/>
 
           {/* ========= ADMIN ROUTES ========= */}
           <Route path="/admin" element={<AdminLayout />}>

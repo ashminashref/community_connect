@@ -64,7 +64,7 @@ function BentoGrid() {
             icon={<Briefcase size={20} />}
             subtitle="Available services"
             items={[
-              { name: "Food Service", showArrow: true, onClick: () => navigate('/services/food') },
+              { name: "Food Service", showArrow: true, onClick: () => navigate('/foodservice') },
               { name: "Medicine Support", showArrow: true, onClick: () => navigate('/services/medicine') },
               { name: "Educational Support", showArrow: true, onClick: () => navigate('/services/education') },
               { name: "Personal Loan", showArrow: true, onClick: () => navigate('/services/loan') }
