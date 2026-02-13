@@ -52,7 +52,7 @@
 /* Header Text */
 .header-section h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #1a3636;
 }
@@ -70,6 +70,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 22px;
+  
 }
 
 /* ===== Card ===== */
@@ -93,6 +94,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+
 }
 
 /* Badge */
@@ -118,6 +120,7 @@
   font-weight: 700;
   color: #111827;
   margin-bottom: 14px;
+  
 }
 
 /* ===== Info Section ===== */
