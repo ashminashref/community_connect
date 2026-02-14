@@ -65,9 +65,9 @@ function BentoGrid() {
             subtitle="Available services"
             items={[
               { name: "Food Service", showArrow: true, onClick: () => navigate('/foodservice') },
-              { name: "Medicine Support", showArrow: true, onClick: () => navigate('/services/medicine') },
-              { name: "Educational Support", showArrow: true, onClick: () => navigate('/services/education') },
-              { name: "Personal Loan", showArrow: true, onClick: () => navigate('/services/loan') }
+              { name: "Medicine Support", showArrow: true, onClick: () => navigate('/usermedicine') },
+              { name: "Educational Support", showArrow: true, onClick: () => navigate('/usereducation') },
+              { name: "Personal Loan", showArrow: true, onClick: () => navigate('/userloan') }
             ]}
           />
         </Col>
@@ -79,10 +79,10 @@ function BentoGrid() {
             icon={<Users2 size={20} />}
             subtitle="Our volunteers"
             items={[
-              { name: "Iftar Team", showArrow: true, onClick: () => navigate('/teams/iftar') },
-              { name: "Uluhiyath Team", showArrow: true, onClick: () => navigate('/teams/uluhiyath') },
-              { name: "Cleaning Team", showArrow: true, onClick: () => navigate('/teams/cleaning') },
-              { name: "Programming Team", showArrow: true, onClick: () => navigate('/teams/programming') }
+              { name: "Iftar Team", showArrow: true, onClick: () => navigate('/ifthar') },
+              { name: "Uluhiyath Team", showArrow: true, onClick: () => navigate('uluhiyath') },
+              { name: "Cleaning Team", showArrow: true, onClick: () => navigate('/cleaning') },
+              { name: "Programming Team", showArrow: true, onClick: () => navigate('/programming') }
             ]}
           />
         </Col>

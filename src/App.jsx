@@ -31,7 +31,15 @@ import AddFoodService from "./Common/Admin/Services/AddFoodService";
 import LoanAdminDashboard from "./Common/Admin/Services/PersonalLoan";
 import EducationService from "./Common/Admin/Services/EducationalService";
 import Medicine from "./Common/Admin/Services/Medicene";
-import FoodServiceUserPage from "./Components/UserServices/UserFoodService";
+import UserMedicinePage from "./Components/UserServices/UserMedicinePage";
+import UserEducationPage from "./Components/UserServices/EducationalSupport";
+import UserLoanPage from "./Components/UserServices/UserLoanPage";
+import UserUdhiyaTeamPage from "./Components/UserTeam/UserUdhiyaTeamPage";
+import UserIftarTeamPage from "./Components/UserTeam/UserIfthar";
+import UserCleaningTeamPage from "./Components/UserTeam/UserCleaningTeamPage";
+import UserProgrammingTeamPage from "./Components/UserTeam/UserProgrammingTeamPage";
+import AdminCreateTeamPage from "./Common/Admin/Services/AdminCreateTeamPage";
+import UserFoodServicePage from "./Components/UserServices/UserFoodService";
 
 function App() {
   return (
@@ -48,7 +56,14 @@ function App() {
           <Route path="/typedua" element={<Typedua />} />
           <Route path="/dua" element={<UserDua />} />
           <Route path="/dua/:categoryName" element={<UserDua />} />
-          <Route path='/foodservice' element={<FoodServiceUserPage/>}/>
+          <Route path='/foodservice' element={<UserFoodServicePage/>}/>
+          <Route path="/usermedicine" element={<UserMedicinePage/>}/>
+          <Route path="/usereducation" element={<UserEducationPage/>}/>
+          <Route path="/userloan" element={<UserLoanPage/>}/>
+          <Route path='/ifthar' element={<UserIftarTeamPage/>}/>
+          <Route path='/uluhiyath' element={<UserUdhiyaTeamPage/>}/>
+          <Route path="/cleaning" element={<UserCleaningTeamPage/>}/>
+          <Route path="programming" element={<UserProgrammingTeamPage/>}/>
 
           {/* ========= ADMIN ROUTES ========= */}
           <Route path="/admin" element={<AdminLayout />}>
@@ -87,6 +102,7 @@ function App() {
               <Route path="foodservices">
                 <Route index element={<FoodServicePage />} />
                 <Route path="add" element={<AddFoodService />} />
+                <Route path="createteam" element={<AdminCreateTeamPage/>}/>
               </Route>
               <Route path="medical" element={<Medicine/>} />
               <Route path="loan" element={<LoanAdminDashboard />} />

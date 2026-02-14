@@ -1,90 +1,98 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './UserFoodService.css';
-import { Utensils, User, Users, ArrowLeft } from 'lucide-react';
-import Floatingnav from '../../Common/User/FloatingNav';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Users, Utensils, CalendarDays } from "lucide-react";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import "./UserFoodService.css";
+import Floatingnav from "../../Common/User/FloatingNav";
 
-const FoodServiceUserPage = () => {
+const foodServicesData = [
+  {
+    id: 1,
+    eventName: "Ramadan Iftar",
+    foodName: "Chicken Biriyani & Dates",
+    providerName: "Ahmed & Family",
+    date: "2024-04-10",
+    members: 25,
+    status: "active",
+  },
+  {
+    id: 2,
+    eventName: "Milad Un Nabi",
+    foodName: "Veg Rice & Sweet",
+    providerName: "Mahal Food Committee",
+    date: "2024-09-16",
+    members: 40,
+    status: "active",
+  },
+];
+
+const UserFoodServicePage = () => {
   const navigate = useNavigate();
 
-  const foodServices = [
-    {
-      id: 1,
-      event: "Ramadan Iftar",
-      foodName: "Chicken Biriyani & Dates",
-      provider: "Ahmed & Family",
-      date: "2024-04-10",
-      members: ["Hanna Fathima", "Zayan Ali", "Omar Farooq", "Sara Khan", "Ibrahim"]
-    },
-    {
-      id: 2,
-      event: "Milad Un Nabi",
-      foodName: "Veg Rice & Sweet",
-      provider: "Mahal Food Committee",
-      date: "2024-09-16",
-      members: ["Yusuf", "Aisha", "Hamza", "Mariyam"]
-    }
-  ];
-
   return (
-    <div className="user-page-container">
+    <div className="user-food-page">
 
       {/* Header */}
-      <header className="header-section">
-        <div className="header-row">
-          <button className="back-btn" onClick={() => navigate(-1)}>
-            <ArrowLeft size={20} />
+      <div className="food-header">
+        <div className="food-title-row">
+
+          <button
+            onClick={() => navigate("/")}
+            className="back-btn icon-only"
+          >
+            <ArrowLeftIcon fontSize="small" />
           </button>
 
           <div>
-            <h1>Community Food Services</h1>
-            <p>Current food distributions and participant lists.</p>
+            <h1 className="curly-txt">Food Services</h1>
+            <p>Community food distributions & events</p>
           </div>
-        </div>
-      </header>
 
-      {/* Cards */}
-      <div className="services-grid">
-        {foodServices.map((service) => (
-          <div key={service.id} className="food-card">
+        </div>
+      </div>
+
+      {/* Food Cards */}
+      <div className="food-services-grid">
+        {foodServicesData.map((item) => (
+          <div key={item.id} className="food-card">
 
             <div className="food-card-header">
-              <span className="status-badge">Active</span>
-              <span className="date-text">{service.date}</span>
+              <span className={`status ${item.status}`}>
+                {item.status}
+              </span>
             </div>
 
-            <h2 className="event-title">{service.event}</h2>
+            <h2>{item.eventName}</h2>
 
-            <div className="info-section">
-              <div className="info-row">
-                <Utensils size={18} />
-                <span>
-                  <span className="info-label">Menu:</span> {service.foodName}
-                </span>
+            <div className="food-info">
+              <div>
+                <Utensils size={16} />
+                <span>{item.foodName}</span>
               </div>
 
-              <div className="info-row">
-                <User size={18} />
-                <span>
-                  <span className="info-label">Provider:</span> {service.provider}
-                </span>
-              </div>
-            </div>
-
-            <div className="members-section">
-              <h3 className="members-title">
+              <div>
                 <Users size={16} />
-                Participants ({service.members.length})
-              </h3>
+                <span>{item.members} Members</span>
+              </div>
 
-              <div className="members-list">
-                {service.members.map((name, index) => (
-                  <span key={index} className="member-chip">
-                    {name}
-                  </span>
-                ))}
+              <div>
+                <CalendarDays size={16} />
+                <span>{item.date}</span>
               </div>
             </div>
+
+            <div className="provider">
+              Provider: <strong>{item.providerName}</strong>
+            </div>
+
+            <button
+              className="view-btn"
+              onClick={() =>
+                navigate(`/services/foodservice/${item.id}`)
+              }
+            >
+              View Details
+            </button>
 
           </div>
         ))}
@@ -95,4 +103,4 @@ const FoodServiceUserPage = () => {
   );
 };
 
-export default FoodServiceUserPage;
+export default UserFoodServicePage;
