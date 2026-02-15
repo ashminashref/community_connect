@@ -94,8 +94,7 @@ function BentoGrid() {
             icon={<Book size={20} />}
             subtitle="Books & resources"
             items={[
-              { name: "Islamic Books", showArrow: true, onClick: () => navigate('/library') },
-              { name: "Audio Lectures", showArrow: true, onClick: () => navigate('/library') }
+              { name: "Books", showArrow: true, onClick: () => navigate('/libraryuser') },
             ]}
           />
         </Col>

@@ -40,6 +40,7 @@ import UserCleaningTeamPage from "./Components/UserTeam/UserCleaningTeamPage";
 import UserProgrammingTeamPage from "./Components/UserTeam/UserProgrammingTeamPage";
 import AdminCreateTeamPage from "./Common/Admin/Services/AdminCreateTeamPage";
 import UserFoodServicePage from "./Components/UserServices/UserFoodService";
+import UserLibraryPage from "./Components/UserLibrary/UserLibraryPage";
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
           <Route path='/uluhiyath' element={<UserUdhiyaTeamPage/>}/>
           <Route path="/cleaning" element={<UserCleaningTeamPage/>}/>
           <Route path="programming" element={<UserProgrammingTeamPage/>}/>
+          <Route path="/libraryuser" element={<UserLibraryPage/>}/>
 
           {/* ========= ADMIN ROUTES ========= */}
           <Route path="/admin" element={<AdminLayout />}>
