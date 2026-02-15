@@ -1,94 +1,111 @@
-/* Notification.css */
+/* =========================
+   PAGE WRAPPER
+========================= */
 
-/* Container & Background */
 .container {
-    max-width: 600px; /* Keeps it looking like a mobile app even on desktop */
-    min-height: 100vh;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  padding-bottom: 80px; /* space for floating nav */
 }
 
-/* Back Button & Header */
-.btn-light {
-    background-color: #f8f9fa;
-    border: none;
-    border-radius: 10px;
-    padding: 8px 12px;
-    transition: all 0.2s ease;
-}
-
-.btn-light:hover {
-    background-color: #e2e6ea;
-    transform: translateX(-2px);
-}
+/* =========================
+   HEADER
+========================= */
 
 h5 {
-    font-weight: 600;
-    color: #333;
+  font-weight: 700;
+  color: var(--text-primary-color);
 }
 
-/* Card Styling */
+.text-muted {
+  color: var(--text-secondary-color) !important;
+}
+
+/* Back button */
+button.btn-light {
+  border-radius: 12px;
+  background-color: var(--card-item-bg);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.btn-light:hover {
+  background-color: var(--card-item-bg-hover);
+}
+
+/* =========================
+   NOTIFICATION CARD
+========================= */
+
 .card {
-    border: none;
-    border-radius: 12px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border-left: 5px solid transparent; /* Placeholder for status color */
+  border-radius: 18px !important;
+  border: 1px solid var(--card-border) !important;
+  background-color: var(--card-bg-secondary) !important;
+  transition: all 0.25s ease;
 }
 
 .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06) !important;
 }
 
-/* Status-based Border Accents */
-.card:has(.bg-warning) {
-    border-left-color: #ffc107;
-}
-
-.card:has(.bg-success) {
-    border-left-color: #198754;
-}
-
-/* Typography within Cards */
+/* Title */
 .card-title {
-    color: #2c3e50;
-    font-weight: 600;
+  font-weight: 600;
+  color: var(--text-primary-color);
 }
 
+/* Message */
 .card-text {
-    font-size: 0.95rem;
-    line-height: 1.4;
-    color: #6c757d !important;
+  font-size: 0.9rem;
+  color: var(--text-secondary-color);
 }
 
-/* Badges */
+/* Date */
+.card small {
+  font-size: 0.75rem;
+  color: var(--text-secondary-color);
+}
+
+/* =========================
+   BADGES
+========================= */
+
 .badge {
-    padding: 6px 10px;
-    font-weight: 500;
-    text-transform: capitalize;
-    border-radius: 6px;
+  text-transform: capitalize;
+  font-size: 0.7rem;
+  padding: 6px 10px;
+  border-radius: 999px;
 }
 
-/* Date Text */
-.text-secondary {
-    font-size: 0.8rem;
-    display: block;
-    margin-top: 10px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
+/* Override bootstrap colors slightly */
+.badge.bg-success {
+  background-color: rgba(34, 197, 94, 0.15) !important;
+  color: #22c55e !important;
 }
 
-/* Bottom Action Button */
-.btn-primary {
-    padding: 12px 40px;
-    font-weight: 600;
-    border-radius: 50px;
-    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
-    border: none;
-    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
-    transition: all 0.3s ease;
+.badge.bg-warning {
+  background-color: rgba(249, 115, 22, 0.15) !important;
+  color: #f97316 !important;
 }
 
-.btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 15px rgba(13, 110, 253, 0.4);
-    background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
+/* =========================
+   ICON ALIGNMENT
+========================= */
+
+svg {
+  vertical-align: middle;
+}
+
+
+@media (max-width: 768px) {
+  h5 {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.85rem;
+  }
 }
