@@ -60,3 +60,32 @@
     font-size: 1px !important;
   }
 }
+.nav-item {
+  position: relative; /* Needed for absolute positioning of badge */
+}
+
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: 48px; /* Adjust based on your icon spacing */
+  background-color: #ff4d4d;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white; /* Makes it pop against the nav bar */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Ensure the nav link is relative for mobile */
+@media (max-width: 768px) {
+  .notification-badge {
+    right: 12px;
+    top: 0px;
+  }
+}

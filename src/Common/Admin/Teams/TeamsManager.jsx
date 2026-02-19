@@ -1,177 +1,156 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Card, Button, Form, Row, Col } from 'react-bootstrap';
+import { Container, Card, Button, Form, Row, Col, Spinner } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-// CHANGED: Now using lucide-react to match your other page
-import { ArrowLeft, Save } from 'lucide-react'; 
-import './TeamsManager.css'; 
+import { ArrowLeft, Save, UserPlus, Trash2 } from 'lucide-react'; 
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const TeamsManager = () => {
   const navigate = useNavigate();
   const { id } = useParams(); 
+  const [loading, setLoading] = useState(true);
 
-  // Mock data - In a real app, you would fetch this from an API or pass it via Context
-  const allTeams = [
-    {
-      id: 1,
-      name: 'Ramadan Iftar Committee',
-      status: 'Active',
-      category: 'Ifthar',
-      description: 'Team responsible for organizing daily iftar during Ramadan.',
-      date: '2024-03-10',
-    },
-    {
-      id: 2,
-      name: 'Eid Udhiya Team',
-      status: 'Upcoming',
-      category: 'Udhiyath',
-      description: 'Team for Eid ul-Adha sacrifice distribution.',
-      date: '2024-06-15',
-    },
-    {
-      id: 3,
-      name: 'Masjid Cleaning Crew',
-      status: 'Active',
-      category: 'Cleaning',
-      description: 'Weekly cleaning and maintenance team.',
-      date: '2024-01-01',
-    }
-  ];
-
-  // State for the form data
   const [formData, setFormData] = useState({
-    name: '',
-    category: '',
+    team_name: '',
+    occasion: '',
     description: '',
-    date: '',
-    status: 'Active'
+    target_date: '',
+    status: 'Upcoming',
+    members: [] // Start with empty array
   });
 
-  // Find the specific team when the page loads
   useEffect(() => {
-    if (id) {
-      const teamToEdit = allTeams.find(t => t.id === parseInt(id));
-      if (teamToEdit) {
-        setFormData(teamToEdit);
+    const fetchDetails = async () => {
+      try {
+        const token = localStorage.getItem('access_token');
+        const res = await axios.get(`http://127.0.0.1:8000/api/teams/${id}/`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setFormData(res.data); // Backend now includes members array
+        setLoading(false);
+      } catch  {
+        navigate('/admin/teams');
       }
-    }
-  }, [id]);
+    };
+    fetchDetails();
+  }, [id, navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSave = () => {
-    // Logic to save to backend would go here
-    console.log("Saved:", formData);
-    navigate('/teams'); // Go back to the list
+  // Member Management Logic
+  const handleMemberChange = (index, field, value) => {
+    const updatedMembers = [...formData.members];
+    updatedMembers[index][field] = value;
+    setFormData({ ...formData, members: updatedMembers });
   };
 
+  const addMemberField = () => {
+    setFormData({
+      ...formData,
+      members: [...formData.members, { name: '', role: 'Member' }]
+    });
+  };
+
+  const removeMember = (index) => {
+    const updatedMembers = formData.members.filter((_, i) => i !== index);
+    setFormData({ ...formData, members: updatedMembers });
+  };
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem('access_token');
+      await axios.put(`http://127.0.0.1:8000/api/teams/${id}/`, formData, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      Swal.fire('Updated!', 'Team and roster saved.', 'success');
+      navigate('/admin/teams'); 
+    } catch (err) {
+      console.error("Save Error:", err.response?.data);
+      Swal.fire('Error', 'Failed to update. Check member names.', 'error');
+    }
+  };
+
+  if (loading) return <div className="text-center mt-5"><Spinner animation="border" /></div>;
+
   return (
-    <div className="body-txt" style={{ minHeight: '100vh', backgroundColor: 'var(--bg-color)', paddingBottom: '50px' }}>
-      <Container className="pt-5">
-        
-        {/* Back Button */}
-        <Button 
-            variant="link" 
-            className="text-decoration-none mb-3 p-0 d-flex align-items-center" 
-            style={{ color: 'var(--text-secondary-color)' }}
-            onClick={() => navigate('/teams')}
-        >
-            <ArrowLeft className="me-2" size={20} /> Back to Teams
+    <div className="body-txt pb-5">
+      <Container className="pt-4">
+        <Button variant="link" onClick={() => navigate('/admin/teams')} className="mb-3 p-0 text-dark text-decoration-none">
+          <ArrowLeft size={20} className="me-2" /> Back
         </Button>
 
-        <Row className="justify-content-center">
-          <Col md={8} lg={6}>
-            <Card className="shadow-lg border-0" style={{ backgroundColor: 'var(--card-bg-secondary)', color: 'var(--text-primary-color)' }}>
-              <Card.Header style={{ backgroundColor: 'var(--card-bg-primary)', color: 'var(--user-card-txt-primary)' }} className="py-3">
-                <h4 className="m-0 curly-txt">Edit Team #{id}</h4>
-              </Card.Header>
-              
-              <Card.Body className="p-4">
-                <Form>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Team Name</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      name="name" 
-                      value={formData.name || ''} 
-                      onChange={handleInputChange} 
-                      style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary-color)', borderColor: 'var(--card-border)' }}
-                    />
-                  </Form.Group>
-                  
-                  <Form.Group className="mb-3">
-                    <Form.Label>Category</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      name="category" 
-                      value={formData.category || ''} 
-                      onChange={handleInputChange}
-                      style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary-color)', borderColor: 'var(--card-border)' }}
-                    />
-                  </Form.Group>
+        <Card className="shadow-sm border-0 rounded-4">
+          <Card.Header className="bg-dark text-white py-3 rounded-top-4">
+            <h5 className="mb-0">Edit Team Roster & Details</h5>
+          </Card.Header>
+          <Card.Body className="p-4">
+            <Form onSubmit={handleSave}>
+              <Row className="mb-4">
+                <Col md={6}>
+                  <Form.Label className="small fw-bold">Team Name</Form.Label>
+                  <Form.Control name="team_name" value={formData.team_name} onChange={handleInputChange} required />
+                </Col>
+                <Col md={6}>
+                  <Form.Label className="small fw-bold">Status</Form.Label>
+                  <Form.Select name="status" value={formData.status} onChange={handleInputChange}>
+                    <option value="Upcoming">Upcoming</option>
+                    <option value="Active">Active</option>
+                    <option value="Completed">Completed</option>
+                  </Form.Select>
+                </Col>
+              </Row>
 
-                  <Form.Group className="mb-3">
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control 
-                      as="textarea" 
-                      rows={4} 
-                      name="description" 
-                      value={formData.description || ''} 
-                      onChange={handleInputChange}
-                      style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary-color)', borderColor: 'var(--card-border)' }}
-                    />
-                  </Form.Group>
+              <hr />
 
-                  <Row>
-                    <Col>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Date</Form.Label>
-                            <Form.Control 
-                            type="date" 
-                            name="date" 
-                            value={formData.date || ''} 
-                            onChange={handleInputChange}
-                            style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary-color)', borderColor: 'var(--card-border)' }}
-                            />
-                        </Form.Group>
+              {/* MEMBERS SECTION */}
+              <div className="d-flex justify-content-between align-items-center mb-3 mt-4">
+                <h6 className="fw-bold mb-0">Volunteer Roster</h6>
+                <Button variant="outline-dark" size="sm" onClick={addMemberField}>
+                  <UserPlus size={16} className="me-2" /> Add Member
+                </Button>
+              </div>
+
+              <div className="bg-light p-3 rounded-3 border">
+                {formData.members.map((member, index) => (
+                  <Row key={index} className="mb-2 g-2 align-items-center">
+                    <Col md={7}>
+                      <Form.Control 
+                        placeholder="Member Name" 
+                        value={member.name} 
+                        onChange={(e) => handleMemberChange(index, 'name', e.target.value)}
+                        required 
+                      />
                     </Col>
-                    <Col>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Status</Form.Label>
-                            <Form.Select 
-                                name="status" 
-                                value={formData.status || 'Active'} 
-                                onChange={handleInputChange}
-                                style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary-color)', borderColor: 'var(--card-border)' }}
-                            >
-                                <option value="Active">Active</option>
-                                <option value="Upcoming">Upcoming</option>
-                                <option value="Inactive">Inactive</option>
-                            </Form.Select>
-                        </Form.Group>
+                    <Col md={3}>
+                      <Form.Select 
+                        value={member.role} 
+                        onChange={(e) => handleMemberChange(index, 'role', e.target.value)}
+                      >
+                        <option value="Lead">Lead</option>
+                        <option value="Volunteer">Volunteer</option>
+                        <option value="Member">Member</option>
+                      </Form.Select>
+                    </Col>
+                    <Col md={2} className="text-end">
+                      <Button variant="link" className="text-danger" onClick={() => removeMember(index)}>
+                        <Trash2 size={18} />
+                      </Button>
                     </Col>
                   </Row>
-                  
-                  <div className="d-flex justify-content-end mt-4">
-                    <Button variant="outline-secondary" className="me-2" onClick={() => navigate('/teams')}>
-                        Cancel
-                    </Button>
-                    <Button 
-                      style={{ backgroundColor: 'var(--btn-pay)', border: 'none', color: 'var(--user-card-txt-primary)' }} 
-                      className="d-flex align-items-center"
-                      onClick={handleSave}
-                    >
-                        <Save className="me-2" size={18} /> Save Changes
-                    </Button>
-                  </div>
+                ))}
+              </div>
 
-                </Form>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+              <div className="d-flex gap-2 mt-5">
+                <Button variant="light" className="w-50" onClick={() => navigate('/admin/teams')}>Cancel</Button>
+                <Button type="submit" variant="dark" className="w-50"><Save size={18} className="me-2" /> Save Roster</Button>
+              </div>
+            </Form>
+          </Card.Body>
+        </Card>
       </Container>
     </div>
   );

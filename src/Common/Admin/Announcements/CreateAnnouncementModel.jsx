@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Row, Col, Card } from "react-bootstrap";
+import { Button, Form, Row, Col, Card, Spinner } from "react-bootstrap";
 import { ArrowLeft, Send } from "lucide-react";
+import axios from "axios";
+import Swal from "sweetalert2";
 import "../Announcements/CreateAnnouncement.css";
 
 const AddAnnouncementPage = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     content: "",
-    priority: "Low",
-    status: "Draft",
+    priority: "low", 
+    status: "published",
   });
 
   const handleChange = (e) => {
@@ -18,16 +21,52 @@ const AddAnnouncementPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Announcement Data:", formData);
-    // Add logic to save to backend here
-    navigate("/admin/announcements");
+    setLoading(true);
+
+    try {
+      const token = localStorage.getItem('access_token');
+      
+      // Match these keys EXACTLY to your Django Announcement model
+      // If your model uses 'subtitle', change 'content' below to 'subtitle'
+      const dataToSend = {
+        title: formData.title,
+        content: formData.content, 
+        priority: formData.priority.toLowerCase(),
+        status: formData.status.toLowerCase()
+      };
+
+      await axios.post('http://127.0.0.1:8000/api/announcements/', dataToSend, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      // Show success message before navigating
+      await Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Announcement created and members notified.',
+        confirmButtonColor: '#1a3024',
+        timer: 2000
+      });
+
+      navigate("/admin/announcements", { replace: true });
+
+    } catch (err) {
+      // This logs the specific field error (like content or subtitle)
+      console.error("Submission error details:", err.response?.data);
+      Swal.fire({
+        icon: 'error',
+        title: 'Submission Failed',
+        text: err.response?.data?.content || err.response?.data?.subtitle || 'Check your fields.'
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="animate-fade-in container-fluid pb-5">
-      {/* Header */}
       <div className="mb-4">
         <Button 
           variant="link" 
@@ -48,8 +87,7 @@ const AddAnnouncementPage = () => {
               name="title"
               value={formData.title}
               onChange={handleChange}
-              placeholder="Enter announcement title"
-              className="custom-input"
+              placeholder="Ex: Ramadan Prayer Times"
               required
             />
           </Form.Group>
@@ -62,8 +100,7 @@ const AddAnnouncementPage = () => {
               name="content"
               value={formData.content}
               onChange={handleChange}
-              placeholder="Write your announcement details here..."
-              className="custom-input"
+              placeholder="Describe the update here..."
               required
             />
           </Form.Group>
@@ -76,11 +113,10 @@ const AddAnnouncementPage = () => {
                   name="priority" 
                   value={formData.priority} 
                   onChange={handleChange}
-                  className="custom-input"
                 >
-                  <option value="Low">Low</option>
-                  <option value="Medium">Medium</option>
-                  <option value="High">High</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -92,10 +128,9 @@ const AddAnnouncementPage = () => {
                   name="status" 
                   value={formData.status} 
                   onChange={handleChange}
-                  className="custom-input"
                 >
-                  <option value="Draft">Draft</option>
-                  <option value="Published">Published</option>
+                  <option value="draft">Draft</option>
+                  <option value="published">Published</option>
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -106,11 +141,17 @@ const AddAnnouncementPage = () => {
               variant="outline-secondary" 
               className="w-50 py-2 fw-bold" 
               onClick={() => navigate("/admin/announcements")}
+              disabled={loading}
             >
               Cancel
             </Button>
-            <Button type="submit" variant="dark" className="w-50 py-2 fw-bold d-flex align-items-center justify-content-center gap-2">
-              <Send size={18} /> Create Announcement
+            <Button 
+              type="submit" 
+              variant="dark" 
+              className="w-50 py-2 fw-bold d-flex align-items-center justify-content-center gap-2"
+              disabled={loading}
+            >
+              {loading ? <Spinner animation="border" size="sm" /> : <><Send size={18} /> Create Announcement</>}
             </Button>
           </div>
         </Form>

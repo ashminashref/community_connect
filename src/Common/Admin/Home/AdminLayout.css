@@ -29,13 +29,13 @@
 .admin-navbar.nav-pills .nav-link.active {
   background-color: var(--card-bg-primary) !important;
   color: var(--icon-bg) !important;
-  font-weight: 500;
+  font-weight: 500 ;
   border: 1px solid var(--card-border);
 }
 
 /* Hover state */
 .admin-navbar .nav-link:hover:not(.active) {
-  background-color: var(--card-bg-secondary);
+  background-color: var(--card-bg-secondary) ;
   color: var(--text-primary-color);
 }
 

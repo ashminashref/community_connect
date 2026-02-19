@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import { Button, Form, Row, Col, Card } from 'react-bootstrap';
-import { UserPlus, Trash2, ArrowLeft, Users } from 'lucide-react';
+import { Button, Form, Row, Col, Card, Spinner } from 'react-bootstrap';
+import { UserPlus, Trash2, ArrowLeft, Users, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 import '../Teams/CreateTeam.css';
 
 const AddTeamPage = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     teamName: '',
     occasion: 'Eid Celebrations',
     description: '',
     date: '',
     status: 'Upcoming',
-    members: [{ name: '', role: 'Member' }] // Default role set to Member
+    members: [{ name: '', role: 'Member' }] 
   });
 
   const handleChange = (e) => {
@@ -38,11 +41,46 @@ const AddTeamPage = () => {
     setFormData({ ...formData, members });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Final Team Data:', formData);
-    // Logic to save data to backend would go here
-    navigate('/admin/teams'); 
+    setLoading(true);
+
+    try {
+      const token = localStorage.getItem('access_token');
+      
+      // Mapping frontend state to Django Model keys
+      const dataToSubmit = {
+        team_name: formData.teamName,
+        occasion: formData.occasion,
+        description: formData.description,
+        target_date: formData.date,
+        status: formData.status,
+        members: formData.members // Array of {name, role}
+      };
+
+      await axios.post('http://127.0.0.1:8000/api/teams/', dataToSubmit, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      await Swal.fire({
+        icon: 'success',
+        title: 'Team Created!',
+        text: `The team "${formData.teamName}" has been successfully organized.`,
+        confirmButtonColor: '#1a1a1a'
+      });
+
+      navigate('/admin/teams');
+
+    } catch (err) {
+      console.error('Team Creation Error:', err.response?.data);
+      Swal.fire({
+        icon: 'error',
+        title: 'Submission Failed',
+        text: 'Please check your data and try again.'
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -215,11 +253,23 @@ const AddTeamPage = () => {
                 variant="outline-secondary" 
                 className="w-50 py-2 fw-bold" 
                 onClick={() => navigate('/admin/teams')}
+                disabled={loading}
              >
-              Cancel
+               Cancel
             </Button>
-            <Button type="submit" variant="dark" className="w-50 py-2 fw-bold">
-              Confirm & Create Team
+            <Button 
+              type="submit" 
+              variant="dark" 
+              className="w-50 py-2 fw-bold d-flex align-items-center justify-content-center gap-2"
+              disabled={loading}
+            >
+              {loading ? (
+                <Spinner animation="border" size="sm" />
+              ) : (
+                <>
+                  <Send size={18} /> Confirm & Create Team
+                </>
+              )}
             </Button>
           </div>
         </Form>

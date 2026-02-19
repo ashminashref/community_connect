@@ -1,7 +1,10 @@
-import { Container, Nav } from 'react-bootstrap';
+import React from 'react';
+import { Container, Nav, Button } from 'react-bootstrap';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { LogOut } from 'lucide-react'; // Premium icon
+import Swal from 'sweetalert2'; // For the premium alert
 import './AdminLayout.css';
-import ThemeToggle from '../../../UI/ThemeToggle';
+
 const AdminLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -11,8 +14,33 @@ const AdminLayout = () => {
 
   const tabs = [
     "Announcements", "Users", "Payments", 
-    "Teams", "Library", "Certificates","Services", "Analytics"
+    "Teams", "Library", "Certificates", "Services", "Analytics"
   ];
+
+  // Global Logout Logic
+  const handleLogout = () => {
+    Swal.fire({
+      title: 'Sign Out',
+      text: "Are you sure you want to exit the Admin Dashboard?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#1a3024', // Mahal Connect Green
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Sign Out',
+      borderRadius: '15px'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Clear all session data
+        localStorage.clear(); 
+        
+        // Securely redirect to login
+        navigate('/login', { replace: true });
+        
+        // Optional: Force reload to clear any remaining state
+        window.location.reload();
+      }
+    });
+  };
 
   return (
     <div className="admin-bg">
@@ -23,9 +51,23 @@ const AdminLayout = () => {
             <p className="dashboard-subtitle mb-0">Manage requests, users, and content</p>
           </div>
 
-          {/* Integration of your ThemeToggle component */}
+          {/* Replaced ThemeToggle with Logout Button */}
           <div className="admin-header-actions">
-            <ThemeToggle />
+            <Button 
+              onClick={handleLogout}
+              variant="outline-danger" 
+              className="d-flex align-items-center gap-2 border-0 shadow-sm px-4 py-2"
+              style={{ 
+                backgroundColor: '#fff5f5', 
+                color: '#dc3545', 
+                borderRadius: '12px', 
+                fontWeight: '600',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              <LogOut size={18} />
+              <span>Sign Out</span>
+            </Button>
           </div>
         </header>
 

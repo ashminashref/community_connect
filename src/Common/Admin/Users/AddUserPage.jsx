@@ -1,126 +1,197 @@
 import React, { useState } from "react";
-import { Card, Form, Button, Row, Col } from "react-bootstrap";
-import { ArrowLeft } from "lucide-react";
+import { Card, Form, Button, Row, Col, Spinner } from "react-bootstrap";
+import { ArrowLeft, UserPlus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
 import "../Users/AddUserPage.css";
 
 const AddUserPage = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: "",
+    first_name: "",
+    last_name: "",
     email: "",
-    phone: "",
-    role: "Member",
-    status: "Active",
+    phone_number: "",
+    password: "User@123", // Default password for admin-created users
+    is_staff: false,
+    is_active: true,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({ 
+      ...prev, 
+      [name]: type === 'checkbox' ? checked : value 
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("User Data Submitted:", formData);
-    alert("User added successfully!");
-    navigate("/admin/users");
+    setLoading(true);
+
+    try {
+      // 1. Prepare data specifically for Django
+      const dataToSubmit = {
+        username: formData.email, // Django requires a username
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        email: formData.email,
+        phone_number: formData.phone_number,
+        password: formData.password,
+        is_active: formData.is_active,
+        is_staff: formData.is_staff
+      };
+
+      // 2. Get the admin token for authorization
+      const token = localStorage.getItem('access_token');
+      
+      // 3. Send POST request
+      await axios.post("http://127.0.0.1:8000/api/register/", dataToSubmit, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      await Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful',
+        text: `${formData.first_name} has been added to the Mahal database.`,
+        confirmButtonColor: '#1a1a1a'
+      });
+
+      navigate("/admin/users");
+
+    } catch (err) {
+      console.error("SERVER ERROR:", err.response?.data);
+      // Extract the specific field error from Django
+      const errorMsg = err.response?.data 
+        ? Object.values(err.response.data).flat()[0] 
+        : "Registration failed. Check your connection.";
+      Swal.fire('Error', errorMsg, 'error');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="animate-fade-in add-user-page">
-      <div className="add-user-container">
+    <div className="animate-fade-in add-user-page container-fluid py-4">
+      <div className="add-user-container mx-auto" style={{ maxWidth: '600px' }}>
         
-        {/* Header */}
-        <div className="add-user-header">
-          <Button
-            variant="link"
-            className="back-btn"
-            onClick={() => navigate(-1)}
-          >
-            <ArrowLeft size={22} />
+        {/* Header Section */}
+        <div className="d-flex align-items-center gap-3 mb-4">
+          <Button variant="link" className="text-dark p-0" onClick={() => navigate(-1)}>
+            <ArrowLeft size={24} />
           </Button>
-          <h4 className="add-user-title">Add New User</h4>
+          <h4 className="fw-bold mb-0">Register New Member</h4>
         </div>
 
         {/* Form Card */}
-        <Card className="add-user-card">
-          <Card.Body>
-            <Form onSubmit={handleSubmit}>
-              
-              <Form.Group className="mb-3">
-                <Form.Label>Full Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="fullName"
-                  placeholder="Enter full name"
-                  value={formData.fullName}
+        <Card className="border-0 shadow-sm p-4" style={{ borderRadius: '15px' }}>
+          <Form onSubmit={handleSubmit}>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label className="small fw-bold">First Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="first_name"
+                    placeholder="Ahmed"
+                    value={formData.first_name}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label className="small fw-bold">Last Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="last_name"
+                    placeholder="Hassan"
+                    value={formData.last_name}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Form.Group className="mb-3">
+              <Form.Label className="small fw-bold">Email Address</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                placeholder="ahmed@example.com"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label className="small fw-bold">Phone Number</Form.Label>
+              <Form.Control
+                type="tel"
+                name="phone_number"
+                placeholder="+91 ..."
+                value={formData.phone_number}
+                onChange={handleChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label className="small fw-bold">Temporary Password</Form.Label>
+              <Form.Control
+                type="text"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+              <Form.Text className="text-muted">Users can change this after their first login.</Form.Text>
+            </Form.Group>
+
+            <Row className="mb-4">
+              <Col xs={6}>
+                <Form.Check 
+                  type="switch"
+                  id="staff-switch"
+                  label="Grant Admin Access"
+                  name="is_staff"
+                  checked={formData.is_staff}
                   onChange={handleChange}
-                  required
                 />
-              </Form.Group>
-
-              <Form.Group className="mb-3">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  placeholder="Enter email address"
-                  value={formData.email}
+              </Col>
+              <Col xs={6}>
+                <Form.Check 
+                  type="switch"
+                  id="active-switch"
+                  label="Account Active"
+                  name="is_active"
+                  checked={formData.is_active}
                   onChange={handleChange}
-                  required
                 />
-              </Form.Group>
+              </Col>
+            </Row>
 
-              <Form.Group className="mb-3">
-                <Form.Label>Phone</Form.Label>
-                <Form.Control
-                  type="tel"
-                  name="phone"
-                  placeholder="Enter phone number"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Row>
-                <Col md={6}>
-                  <Form.Group className="mb-4">
-                    <Form.Label>Role</Form.Label>
-                    <Form.Select
-                      name="role"
-                      value={formData.role}
-                      onChange={handleChange}
-                    >
-                      <option>Member</option>
-                      <option>Admin</option>
-                      <option>Moderator</option>
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-
-                <Col md={6}>
-                  <Form.Group className="mb-4">
-                    <Form.Label>Status</Form.Label>
-                    <Form.Select
-                      name="status"
-                      value={formData.status}
-                      onChange={handleChange}
-                    >
-                      <option>Active</option>
-                      <option>Inactive</option>
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-              </Row>
-
-              <Button type="submit" className="add-user-btn w-100">
-                Add User
-              </Button>
-            </Form>
-          </Card.Body>
+            <Button 
+              type="submit" 
+              variant="dark" 
+              className="w-100 py-3 fw-bold d-flex align-items-center justify-content-center gap-2" 
+              disabled={loading}
+            >
+              {loading ? (
+                <Spinner animation="border" size="sm" />
+              ) : (
+                <>
+                  <UserPlus size={18} /> 
+                  <span>Register Member</span>
+                </>
+              )}
+            </Button>
+          </Form>
         </Card>
-
       </div>
     </div>
   );

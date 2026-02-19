@@ -1,6 +1,37 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import { ThemeProvider } from "./Theme/Themecontext";
+
+/* ================= AUTH GUARDS ================= */
+
+// PUBLIC ROUTE: Blocks access to Login/Signup if a session exists
+const PublicRoute = ({ children }) => {
+  const token = localStorage.getItem('access_token');
+  const isAdmin = localStorage.getItem('is_admin') === 'true';
+
+  if (token) {
+    // If they click 'back' to login, instantly kick them to their correct home
+    // 'replace' overwrites the history entry so the back button is neutralized
+    return <Navigate to={isAdmin ? "/admin" : "/home"} replace />;
+  }
+  return children;
+};
+
+// PROTECTED ROUTE: Ensures only logged-in members can see user pages
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem('access_token');
+  return token ? children : <Navigate to="/login" replace />;
+};
+
+// ADMIN ROUTE: Strictly blocks non-admins and handles unauthorized access
+const AdminRoute = ({ children }) => {
+  const token = localStorage.getItem('access_token');
+  const isAdmin = localStorage.getItem('is_admin') === 'true';
+
+  if (!token) return <Navigate to="/login" replace />;
+  if (!isAdmin) return <Navigate to="/home" replace />;
+  return children;
+};
 
 /* ================= USER PAGES ================= */
 import Home from "./Pages/User/Home";
@@ -41,6 +72,14 @@ import UserProgrammingTeamPage from "./Components/UserTeam/UserProgrammingTeamPa
 import AdminCreateTeamPage from "./Common/Admin/Services/AdminCreateTeamPage";
 import UserFoodServicePage from "./Components/UserServices/UserFoodService";
 import UserLibraryPage from "./Components/UserLibrary/UserLibraryPage";
+import Signup from "./Common/Login/Signup";
+import Login from "./Common/Login/Login";
+import EditAnnouncementPage from "./Common/Admin/Announcements/EditAnnouncementPage";
+import TeamsManager from "./Common/Admin/Teams/TeamsManager";
+import EditBookPage from "./Common/Admin/Library/EditBookPage";
+import TeamDetailPage from "./Components/UserTeam/TeamDetailPage";
+import MyDocuments from "./Pages/User/MyDocuments";
+import SupportPage from "./Pages/User/SupportPage";
 
 function App() {
   return (
@@ -48,69 +87,73 @@ function App() {
       <div className="p-3">
         <Routes>
 
-          {/* ========= USER ROUTES ========= */}
-          <Route path="/" element={<Home />} />
-          <Route path="/notification" element={<Notifications />} />
-          <Route path="/userprofile" element={<Profile />} />
-          <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/certificate" element={<Certificate />} />
-          <Route path="/typedua" element={<Typedua />} />
-          <Route path="/dua" element={<UserDua />} />
-          <Route path="/dua/:categoryName" element={<UserDua />} />
-          <Route path='/foodservice' element={<UserFoodServicePage/>}/>
-          <Route path="/usermedicine" element={<UserMedicinePage/>}/>
-          <Route path="/usereducation" element={<UserEducationPage/>}/>
-          <Route path="/userloan" element={<UserLoanPage/>}/>
-          <Route path='/ifthar' element={<UserIftarTeamPage/>}/>
-          <Route path='/uluhiyath' element={<UserUdhiyaTeamPage/>}/>
-          <Route path="/cleaning" element={<UserCleaningTeamPage/>}/>
-          <Route path="programming" element={<UserProgrammingTeamPage/>}/>
-          <Route path="/libraryuser" element={<UserLibraryPage/>}/>
+          {/* ========= PUBLIC ROUTES (Auth) ========= */}
+          {/* PublicRoute now checks if user is logged in and replaces history */}
+          <Route path="/" element={<PublicRoute><Signup /></PublicRoute>} />
+          <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
 
-          {/* ========= ADMIN ROUTES ========= */}
-          <Route path="/admin" element={<AdminLayout />}>
+          {/* ========= PROTECTED USER ROUTES ========= */}
+          <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          <Route path="/teams/:id" element={<TeamDetailPage />} />
+          <Route path="/notification" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+          <Route path="/userprofile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/documents" element={<ProtectedRoute><MyDocuments /></ProtectedRoute>} />
+          <Route path="/support" element={<ProtectedRoute><SupportPage /></ProtectedRoute>} />
 
-            {/* Announcements */}
+          <Route path="/payment" element={<ProtectedRoute><PaymentPage /></ProtectedRoute>} />
+          <Route path="/certificate" element={<ProtectedRoute><Certificate /></ProtectedRoute>} />
+          <Route path="/typedua" element={<ProtectedRoute><Typedua /></ProtectedRoute>} />
+          <Route path="/dua" element={<ProtectedRoute><UserDua /></ProtectedRoute>} />
+          <Route path="/dua/:categoryName" element={<ProtectedRoute><UserDua /></ProtectedRoute>} />
+          <Route path='/foodservice' element={<ProtectedRoute><UserFoodServicePage /></ProtectedRoute>} />
+          <Route path="/usermedicine" element={<ProtectedRoute><UserMedicinePage /></ProtectedRoute>} />
+          <Route path="/usereducation" element={<ProtectedRoute><UserEducationPage /></ProtectedRoute>} />
+          <Route path="/userloan" element={<ProtectedRoute><UserLoanPage /></ProtectedRoute>} />
+          <Route path='/ifthar' element={<ProtectedRoute><UserIftarTeamPage /></ProtectedRoute>} />
+          <Route path='/uluhiyath' element={<ProtectedRoute><UserUdhiyaTeamPage /></ProtectedRoute>} />
+          <Route path="/cleaning" element={<ProtectedRoute><UserCleaningTeamPage /></ProtectedRoute>} />
+          <Route path="programming" element={<ProtectedRoute><UserProgrammingTeamPage /></ProtectedRoute>} />
+          <Route path="/libraryuser" element={<ProtectedRoute><UserLibraryPage /></ProtectedRoute>} />
+
+          {/* ========= ADMIN ROUTES (Role-Based) ========= */}
+          <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+            <Route index element={<AnnouncementsPage />} />
+            
             <Route path="announcements">
               <Route index element={<AnnouncementsPage />} />
               <Route path="add" element={<AddAnnouncementPage />} />
+              <Route path="edit/:id" element={<EditAnnouncementPage />} /> {/* New Edit Route */}
             </Route>
 
-            {/* Users */}
             <Route path="users">
               <Route index element={<UsersPage />} />
               <Route path="add" element={<AddUserPage />} />
             </Route>
 
-            {/* Payments */}
             <Route path="payments" element={<AdminPaymentPage />} />
 
-            {/* Teams */}
             <Route path="teams">
               <Route index element={<TeamsPage />} />
               <Route path="add" element={<AddTeamPage />} />
+              <Route path="edit/:id" element={<TeamsManager />} />
             </Route>
 
-            {/* ✅ FIXED Library Route */}
             <Route path="library" element={<LibraryPage />} />
-
-            {/* Other Admin Pages */}
+<Route path="library/edit/:id" element={<EditBookPage />} />
             <Route path="certificates" element={<CertificatesPage />} />
             <Route path="analytics" element={<AnalyticsPage />} />
 
-            {/* Services */}
             <Route path="services">
               <Route index element={<ServicesPage />} />
               <Route path="foodservices">
                 <Route index element={<FoodServicePage />} />
                 <Route path="add" element={<AddFoodService />} />
-                <Route path="createteam" element={<AdminCreateTeamPage/>}/>
+                <Route path="createteam" element={<AdminCreateTeamPage />} />
               </Route>
-              <Route path="medical" element={<Medicine/>} />
+              <Route path="medical" element={<Medicine />} />
               <Route path="loan" element={<LoanAdminDashboard />} />
               <Route path="education" element={<EducationService />} />
             </Route>
-
           </Route>
 
           {/* ========= 404 ========= */}
